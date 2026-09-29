@@ -1,0 +1,1117 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Great Lenox Library Octopus Hunt — Research Mini-Lesson V1.19</title>
+<style>
+:root{
+  --purple:#563184;--purple2:#7447a6;--lav:#f3edf8;--ink:#211a2d;
+  --muted:#655d6d;--gold:#f2b705;--green:#2f7654;--paper:#fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:#18151c;font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+.deck{width:100%}
+.slide{
+  width:100vw;height:100vh;min-height:640px;background:var(--paper);
+  padding:5vh 6vw;display:none;position:relative;overflow:hidden;
+}
+.slide.active{display:flex;flex-direction:column}
+.topline{font-size:clamp(12px,1.2vw,18px);font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--purple2)}
+h1{font-size:clamp(38px,5vw,74px);line-height:.98;margin:.12em 0 .22em;letter-spacing:-.035em}
+h2{font-size:clamp(27px,3.2vw,48px);line-height:1.05;margin:.1em 0 .4em}
+p,li{font-size:clamp(19px,2vw,30px);line-height:1.32}
+.small{font-size:clamp(15px,1.45vw,22px);color:var(--muted)}
+.hero{background:var(--purple);color:white}
+.hero .topline{color:#e9dcf5}
+.hero h1{max-width:900px}
+.hero .bigemoji{font-size:clamp(80px,12vw,170px);position:absolute;right:7vw;bottom:7vh}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:2vw;align-items:stretch;flex:1;min-height:0}
+.card{border:2px solid #ddd1e7;border-radius:22px;padding:2.2vw;background:#fff}
+.soft{background:var(--lav)}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2vw}
+.answer{border:2px solid #d8cce2;border-radius:16px;padding:1.1vw 1.3vw;font-size:clamp(17px,1.65vw,25px)}
+.answer strong{color:var(--purple)}
+.refrain{display:flex;gap:1vw;align-items:center;margin:1.2vh 0 2vh}
+.refrain span{flex:1;text-align:center;padding:.7em;border-radius:999px;font-weight:900;font-size:clamp(16px,1.5vw,23px);background:var(--lav);color:var(--purple)}
+.refrain .current{background:var(--purple);color:white}
+.question{font-size:clamp(26px,3vw,44px);font-weight:900;line-height:1.15;margin:1.5vh 0}
+.searchbox{border:3px solid var(--purple);border-radius:18px;padding:1.2em 1.3em;font-size:clamp(25px,3vw,45px);font-weight:900;background:white}
+.strike{color:#8a808f;text-decoration:line-through;text-decoration-thickness:3px}
+.keep{display:inline-block;background:#efe5f7;color:var(--purple);border-radius:10px;padding:.08em .28em;margin:.06em}
+.arrow{font-size:clamp(28px,4vw,60px);font-weight:900;color:var(--purple);text-align:center}
+.keyword-row{display:flex;gap:1vw;flex-wrap:wrap;margin-top:2vh}
+.keyword{padding:.55em .8em;border-radius:14px;background:var(--purple);color:#fff;font-weight:900;font-size:clamp(22px,2.3vw,34px)}
+.syn{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1vw;align-items:center;margin-top:4vh}
+.syn div{border:2px solid #d8cce2;border-radius:16px;padding:1em;text-align:center;font-weight:900;font-size:clamp(20px,2vw,31px)}
+.andviz{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5vw;align-items:center;margin:5vh 0}
+.andviz .concept{border:3px solid #d8cce2;border-radius:22px;padding:1.4em;text-align:center;font-size:clamp(25px,2.7vw,40px);font-weight:900}
+.andviz .and{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:var(--purple);color:#fff;font-size:30px;font-weight:1000}
+.filter{display:grid;grid-template-columns:1.15fr .85fr;gap:2vw;align-items:center}
+.fake-results{border:2px solid #ddd;border-radius:20px;padding:1.5vw}
+.fake-result{padding:1vw;border-bottom:1px solid #ddd;font-size:clamp(15px,1.4vw,21px)}
+.fake-result:last-child{border-bottom:0}
+.fake-filter{background:var(--lav);border:3px solid var(--purple);border-radius:20px;padding:1.4vw}
+.fake-filter div{padding:.65em;border-radius:10px;margin:.45em 0;background:#fff;font-size:clamp(17px,1.6vw,24px)}
+.fake-filter .selected{background:var(--purple);color:white;font-weight:900}
+.scholar{display:grid;grid-template-columns:1fr 1fr;gap:2vw}
+.result-card{border:2px solid #d8cce2;border-radius:20px;padding:1.5vw}
+.result-title{font-size:clamp(20px,2vw,30px);font-weight:900;color:#334d91}
+.related{display:inline-block;margin-top:1em;padding:.55em .8em;border:3px solid var(--purple);border-radius:12px;color:var(--purple);font-weight:900}
+.pause{background:#fff8dd;border:2px solid #e1bb36;border-radius:18px;padding:1.1vw 1.4vw;margin-top:2vh}
+.check{font-weight:900;color:var(--green)}
+.debrief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3vw;margin-top:2vh}
+.move{border:2px solid #d8cce2;border-radius:20px;padding:1.5vw}
+.move .icon{font-size:40px}
+.move h3{font-size:clamp(20px,2vw,30px);margin:.3em 0}
+.bottom{position:absolute;left:6vw;right:6vw;bottom:2.5vh;display:flex;justify-content:space-between;align-items:center;color:#756c7b;font-size:14px}
+.controls{position:fixed;right:16px;bottom:14px;z-index:99;display:flex;gap:8px}
+.controls button{border:0;border-radius:999px;padding:11px 15px;background:#211a2d;color:#fff;font-weight:900;cursor:pointer}
+@media print{
+  html,body{background:white}
+  .slide{display:flex!important;width:13.333in;height:7.5in;min-height:0;page-break-after:always;padding:.45in .6in}
+  .controls{display:none}
+  @page{size:13.333in 7.5in;margin:0}
+}
+
+/* V1.2 — refined collegiate/editorial visual system */
+:root{
+  --purple:#45256f;--purple2:#68439a;--lav:#f4f0f8;--lav2:#e8def1;
+  --ink:#17141d;--muted:#625b69;--gold:#c99a21;--green:#286849;
+  --paper:#fcfbfd;--line:#d9d1df;
+}
+html,body{background:#111014}
+.slide{
+  background:
+    radial-gradient(circle at 92% 8%,rgba(104,67,154,.075),transparent 22%),
+    linear-gradient(180deg,#fff 0%,#fcfbfd 100%);
+  padding:5.5vh 6.5vw;
+}
+.topline{
+  font-size:clamp(11px,1vw,16px);letter-spacing:.17em;
+  color:var(--purple2);margin-bottom:1.5vh
+}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.035em}
+h2{font-family:Georgia,"Times New Roman",serif;letter-spacing:-.02em}
+p,li{max-width:1100px}
+.hero{
+  background:
+    radial-gradient(circle at 84% 24%,rgba(255,255,255,.10),transparent 18%),
+    radial-gradient(circle at 75% 75%,rgba(255,255,255,.06),transparent 24%),
+    linear-gradient(135deg,#321a52 0%,#53307b 62%,#6a4392 100%);
+}
+.hero .topline{color:#ddd0e9}
+.hero h1{font-size:clamp(46px,5.8vw,84px);max-width:1020px}
+.hero p{font-size:clamp(21px,2.1vw,31px);max-width:820px;color:#f1eaf7}
+.hero .bigemoji{opacity:.16;filter:grayscale(1);font-size:clamp(150px,22vw,310px);right:3vw;bottom:-4vh}
+.card{border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(43,27,58,.06)}
+.soft{background:linear-gradient(145deg,#f7f3fa,#f0e9f6)}
+.answer-grid{gap:1vw}
+.answer{
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:1.25vw 1.45vw;box-shadow:0 8px 22px rgba(43,27,58,.045)
+}
+.answer strong{display:block;margin-bottom:.3em;font-size:1.08em}
+.pause{background:#faf7ed;border:1px solid #dbc77f;border-left:5px solid var(--gold);border-radius:10px}
+.keyword{border-radius:8px;padding:.48em .72em}
+.searchbox{border:2px solid var(--purple);border-radius:10px;box-shadow:0 8px 22px rgba(69,37,111,.08)}
+.syn div,.andviz .concept,.result-card{border:1px solid var(--line);border-radius:12px;background:#fff}
+.andviz .and{width:94px;height:94px;background:var(--purple);font-size:26px}
+.fake-results,.fake-filter{border-radius:12px}
+.fake-filter{border:1px solid var(--line);background:var(--lav)}
+.fake-filter .selected{background:var(--purple)}
+.related{border:2px solid var(--purple);border-radius:8px}
+.move{border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 8px 22px rgba(43,27,58,.04)}
+.move .icon{font-size:30px}
+.bottom{border-top:1px solid #e7e1ea;padding-top:1vh}
+.hero .bottom{border-top-color:rgba(255,255,255,.18)}
+.controls button{background:#30273a;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.objectives{display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;margin-top:4vh;max-width:1050px}
+.objective{border-top:3px solid rgba(255,255,255,.72);padding-top:1.2em}
+.objective .num{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:#ddd0e9;font-weight:900}
+.objective p{font-size:clamp(18px,1.65vw,25px);line-height:1.35;color:white;margin:.4em 0}
+.transition-title{font-family:Arial,Helvetica,sans-serif;font-weight:900;letter-spacing:.01em}
+
+
+.demo-actions{display:flex;gap:1vw;align-items:center;margin-top:1.4vh;flex-wrap:wrap}
+.demo-link{
+  display:inline-flex;align-items:center;gap:.55em;text-decoration:none;
+  background:var(--purple);color:#fff;border-radius:9px;padding:.78em 1.05em;
+  font-weight:900;font-size:clamp(16px,1.45vw,22px);
+  box-shadow:0 7px 18px rgba(69,37,111,.15)
+}
+.demo-link:hover,.demo-link:focus{background:var(--purple2);outline:3px solid #d7c5e8;outline-offset:3px}
+.demo-note{font-size:clamp(14px,1.2vw,18px);color:var(--muted);margin:0}
+.hero .demo-note{color:#e9dcf5}
+
+
+.scholar-slide .scholar{margin-top:.4vh}
+.scholar-slide .result-card,.scholar-slide .card{padding:1.2vw}
+.scholar-slide .result-card p,.scholar-slide .card p{margin:.45em 0}
+.scholar-slide .demo-actions{margin-top:.8vh}
+.scholar-slide .demo-link{padding:.62em .9em;font-size:clamp(15px,1.3vw,20px)}
+.scholar-slide .demo-note{font-size:clamp(12px,1vw,16px)}
+
+
+/* V1.5 — live debrief capture + cleaner closing footers */
+.debrief-slide{padding-bottom:8vh}
+.debrief-slide .bottom{
+  position:absolute;left:6.5vw;right:6.5vw;bottom:2.2vh;
+  border-top:1px solid #e4dfe8;padding-top:.8vh;
+  font-size:clamp(11px,.9vw,14px);color:#756c7b
+}
+.live-capture{
+  margin-top:1.5vh;border:1px solid var(--line);border-radius:12px;
+  background:#f8f5fa;padding:1vw 1.2vw
+}
+.live-capture label{
+  display:block;font-size:clamp(14px,1.2vw,18px);font-weight:900;
+  color:var(--purple);margin-bottom:.45em;letter-spacing:.02em
+}
+.live-capture textarea{
+  display:block;width:100%;min-height:82px;resize:vertical;
+  border:1.5px solid #bcaec8;border-radius:9px;background:#fff;
+  padding:.7em .8em;font:600 clamp(16px,1.35vw,20px)/1.35 Arial,Helvetica,sans-serif;
+  color:var(--ink)
+}
+.live-capture textarea:focus{outline:3px solid #ddcfeb;outline-offset:2px;border-color:var(--purple)}
+.debrief-slide .debrief-grid{gap:.85vw;margin-top:1vh}
+.debrief-slide .move{padding:1vw 1.15vw}
+.debrief-slide .move .icon{font-size:24px}
+.debrief-slide .move h3{font-size:clamp(17px,1.55vw,24px);margin:.2em 0}
+.debrief-slide .move p{font-size:clamp(14px,1.25vw,19px);margin:.25em 0}
+.debrief-final .grid2{gap:1.2vw}
+.debrief-final .card{padding:1.25vw}
+.debrief-final .card p{font-size:clamp(16px,1.45vw,22px);margin:.5em 0}
+@media print{.live-capture textarea{min-height:70px}}
+
+
+/* V1.6 — one large live debrief capture */
+.debrief-slide .live-capture textarea{min-height:150px}
+.debrief-slide .live-capture{margin-top:1.2vh;padding:1.15vw 1.3vw}
+.debrief-final .sendoff{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;margin-top:2.2vh
+}
+.debrief-final .sendoff-card{
+  border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:1.5vw;box-shadow:0 8px 22px rgba(43,27,58,.045)
+}
+.debrief-final .sendoff-card strong{color:var(--purple)}
+.debrief-final .sendoff-card p{font-size:clamp(17px,1.55vw,24px)}
+.debrief-final .sendoff-num{
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--purple2);font-weight:900
+}
+
+
+/* V1.7 — final-slide collision fix */
+.debrief-final{padding-bottom:10vh}
+.debrief-final .sendoff{margin-top:1.4vh;gap:1.2vw}
+.debrief-final .sendoff-card{padding:1.2vw 1.35vw}
+.debrief-final .sendoff-card h2{margin:.35em 0 .45em}
+.debrief-final .sendoff-card p{font-size:clamp(16px,1.35vw,21px);line-height:1.32;margin:.4em 0}
+.debrief-final .pause{margin-top:1.1vh;padding:.75em 1em;font-size:clamp(14px,1.2vw,18px)}
+.debrief-final .bottom{bottom:1.6vh;background:transparent}
+
+
+/* V1.8 — navigation controls centered so they never cover slide numbers */
+.controls{
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%);
+  bottom:1.35vh!important;
+  z-index:50;
+}
+
+
+/* V1.9 — click-to-reveal Explore review */
+.reveal-answer{
+  opacity:0;max-height:0;overflow:hidden;transform:translateY(4px);
+  transition:opacity .2s ease,max-height .25s ease,transform .2s ease;
+}
+.answer.revealed .reveal-answer{opacity:1;max-height:130px;transform:none;margin-top:.45em}
+.answer.revealable{cursor:pointer}
+.answer.revealable::after{
+  content:"Click to reveal";display:block;margin-top:.55em;
+  font-size:clamp(11px,.85vw,14px);font-weight:900;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--purple2)
+}
+.answer.revealable.revealed::after{content:"Answer revealed";color:var(--muted)}
+.answer.revealable:focus{outline:3px solid #d7c5e8;outline-offset:3px}
+.review-hint{font-size:clamp(13px,1vw,16px);color:var(--muted);margin:.1vh 0 1vh}
+
+
+/* V1.10 — persistent classroom countdown timers */
+.timer-panel{max-width:760px;margin:2.2vh auto 0;padding:1.25vw 1.6vw;border:1px solid rgba(255,255,255,.28);border-radius:16px;background:rgba(255,255,255,.09);text-align:center}
+.timer-display{font:700 clamp(58px,7.5vw,112px)/1 Georgia,"Times New Roman",serif;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums}
+.timer-label{margin:.3em 0 .8em;font-size:clamp(13px,1.1vw,17px);color:#eee4f5}
+.timer-actions{display:flex;justify-content:center;gap:.7vw;flex-wrap:wrap}
+.timer-btn{border:1px solid rgba(255,255,255,.42);border-radius:9px;padding:.62em .95em;background:#fff;color:var(--purple);font:900 clamp(13px,1.05vw,17px)/1 Arial,sans-serif;cursor:pointer}
+.timer-btn.secondary{background:transparent;color:#fff}
+.timer-panel.warning{background:rgba(201,154,33,.24);border-color:#e1bd5c}.timer-panel.ended{background:rgba(255,255,255,.16);border-color:#fff}
+.timer-mini{position:fixed;top:1.2vh;right:1.4vw;z-index:45;display:none;padding:.5em .7em;border-radius:9px;background:#30273a;color:#fff;font-weight:900;font-size:clamp(12px,1vw,16px);font-variant-numeric:tabular-nums;box-shadow:0 5px 16px rgba(0,0,0,.18)}
+.timer-mini.visible{display:block}.timer-mini.warning{background:#775815}
+.research-launch-timer{max-width:620px;margin-top:1.2vh;padding:.9vw 1.2vw}.research-launch-timer .timer-display{font-size:clamp(44px,5.5vw,78px)}.research-launch-timer .timer-label{margin:.2em 0 .55em}
+@media print{.timer-actions,.timer-mini{display:none!important}}
+
+
+/* V1.11 — orientation bridge + timer/navigation clearance */
+.orientation-slide .service-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw;
+  margin:4vh 0 3vh
+}
+.orientation-slide .service-card{
+  border:1px solid rgba(255,255,255,.25);border-radius:14px;
+  background:rgba(255,255,255,.09);padding:1.3vw;text-align:center
+}
+.orientation-slide .service-card .service-icon{
+  display:block;font-size:clamp(30px,3vw,46px);margin-bottom:.3em
+}
+.orientation-slide .service-card strong{
+  display:block;font-size:clamp(17px,1.55vw,24px);color:#fff
+}
+.orientation-slide .go-find{
+  display:inline-block;margin-top:1vh;padding:.55em .9em;
+  border-top:2px solid rgba(255,255,255,.7);
+  font:900 clamp(24px,2.6vw,38px)/1.15 Arial,Helvetica,sans-serif;
+  color:#fff;letter-spacing:.01em
+}
+.timer-slide .bottom,.research-timer-slide .bottom{padding-bottom:4.8vh}
+.research-timer-slide .research-launch-timer{margin-bottom:5.5vh}
+.research-timer-slide{padding-bottom:11vh}
+
+
+/* V1.12 — structural collision fixes */
+.orientation-slide{
+  padding-bottom:10vh!important;
+}
+.orientation-slide .service-strip{
+  margin:2.4vh 0 2vh!important;
+}
+.orientation-slide .go-find{
+  display:block!important;
+  width:max-content;
+  max-width:90%;
+  margin:2.2vh auto 0!important;
+  padding:.55em 1em!important;
+  border:2px solid rgba(255,255,255,.7)!important;
+  border-radius:12px;
+}
+.orientation-slide .bigemoji{display:none!important}
+.orientation-slide .bottom{
+  bottom:1.6vh!important;
+}
+
+/* Timer slides get their own navigation rail at upper right.
+   This removes the controls completely from the countdown/footer zone. */
+body:has(.slide.active.timer-slide) .controls,
+body:has(.slide.active.research-timer-slide) .controls{
+  left:auto!important;
+  right:1.5vw!important;
+  top:1.4vh!important;
+  bottom:auto!important;
+  transform:none!important;
+}
+.timer-slide,.research-timer-slide{
+  padding-bottom:9vh!important;
+}
+.research-timer-slide .research-launch-timer{
+  margin:1vh auto 0!important;
+  padding:.7vw 1.1vw!important;
+}
+.research-timer-slide .timer-display{
+  font-size:clamp(40px,4.8vw,70px)!important;
+}
+.research-timer-slide .timer-actions{
+  margin-bottom:0!important;
+}
+.research-timer-slide .bottom{
+  bottom:1.5vh!important;
+}
+
+
+/* V1.13 — explicit non-overlapping navigation/timer zones */
+
+/* Normal navigation stays centered, but on the orientation slide it moves to upper-right
+   so it cannot cover "Your mission: Go find them." */
+body:has(.slide.active.orientation-slide) .controls{
+  left:auto!important;
+  right:1.5vw!important;
+  top:1.4vh!important;
+  bottom:auto!important;
+  transform:none!important;
+}
+
+/* Restore arrows on the Research Quest timer slide and park them at lower-left. */
+body:has(.slide.active.research-timer-slide) .controls{
+  display:flex!important;
+  left:1.5vw!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:1.4vh!important;
+  transform:none!important;
+}
+
+/* Research timer becomes a compact lower-right module above the 11/13 footer number.
+   Main slide content reserves the right/lower area for it. */
+.research-timer-slide{
+  padding-bottom:17vh!important;
+}
+.research-timer-slide .research-launch-timer{
+  position:absolute!important;
+  right:2vw!important;
+  bottom:6.2vh!important;
+  width:min(330px,28vw)!important;
+  margin:0!important;
+  padding:.55vw .75vw!important;
+  z-index:20;
+}
+.research-timer-slide .research-launch-timer .timer-display{
+  font-size:clamp(30px,3.5vw,52px)!important;
+}
+.research-timer-slide .research-launch-timer .timer-label{
+  font-size:clamp(10px,.78vw,13px)!important;
+  margin:.15em 0 .4em!important;
+}
+.research-timer-slide .research-launch-timer .timer-actions{
+  gap:.35vw!important;
+}
+.research-timer-slide .research-launch-timer .timer-btn{
+  font-size:clamp(10px,.75vw,13px)!important;
+  padding:.45em .6em!important;
+}
+.research-timer-slide .bottom{
+  bottom:1.4vh!important;
+  padding-bottom:0!important;
+  padding-right:1vw!important;
+}
+
+/* Keep the orientation mission safely above its footer. */
+.orientation-slide .go-find{
+  margin-bottom:5vh!important;
+}
+
+
+/* V1.14 — clean mission callout; no footer rule near mission text */
+.orientation-slide .go-find{border:none!important;background:rgba(255,255,255,.10)!important;padding:.65em 1.05em!important;margin:2vh auto 7vh!important;border-radius:12px!important}
+.orientation-slide .bottom{border-top:none!important}
+
+
+/* V1.15 — Slide 3 giant Quest launch QR */
+.quest-launch{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,35vw);
+  gap:3.2vw;
+  align-items:center;
+  flex:1;
+  min-height:0;
+}
+.quest-launch-copy p{max-width:760px}
+.quest-qr-wrap{
+  justify-self:end;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.65vh;
+}
+.quest-qr{
+  width:min(35vw,52vh);
+  height:min(35vw,52vh);
+  background:#fff;
+  padding:14px;
+  border-radius:18px;
+  box-shadow:0 14px 38px rgba(0,0,0,.22);
+  image-rendering:pixelated;
+}
+.quest-qr-label{
+  color:#fff;
+  font-weight:900;
+  font-size:clamp(18px,1.6vw,25px);
+  text-align:center;
+}
+.quest-qr-url{
+  color:#e9dcf5;
+  font-size:clamp(10px,.8vw,13px);
+  text-align:center;
+}
+.timer-slide .timer-panel{
+  max-width:620px;
+  margin:1.2vh 0 0;
+  padding:.8vw 1.05vw;
+}
+.timer-slide .timer-display{font-size:clamp(42px,5.4vw,76px)}
+.timer-slide .timer-label{margin:.15em 0 .5em}
+.timer-slide .timer-btn{font-size:clamp(11px,.9vw,15px);padding:.5em .75em}
+@media(max-width:760px){
+  .quest-launch{grid-template-columns:1fr}
+  .quest-qr-wrap{justify-self:center}
+  .quest-qr{width:min(52vw,38vh);height:min(52vw,38vh)}
+}
+@media print{
+  .quest-qr{width:3.55in;height:3.55in}
+}
+
+
+/* V1.16 — classroom readability: larger body copy; titles unchanged */
+p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
+.small{font-size:clamp(18px,1.65vw,25px)}
+.answer{font-size:clamp(20px,1.9vw,29px)}
+.question{font-size:clamp(28px,3.15vw,46px)}
+.objective p{font-size:clamp(21px,1.9vw,29px)}
+.demo-note{font-size:clamp(17px,1.4vw,21px)}
+.scholar-slide .demo-note{font-size:clamp(15px,1.2vw,18px)}
+.fake-result{font-size:clamp(18px,1.6vw,24px)}
+.fake-filter div{font-size:clamp(19px,1.8vw,27px)}
+.debrief-slide .move p{font-size:clamp(17px,1.45vw,22px)}
+.debrief-final .sendoff-card p{font-size:clamp(19px,1.6vw,24px);line-height:1.28}
+.debrief-final .pause{font-size:clamp(17px,1.4vw,21px)}
+.review-hint{font-size:clamp(16px,1.25vw,19px)}
+.quest-qr-url{font-size:clamp(12px,.95vw,15px)}
+.scholar-slide .result-card p,.scholar-slide .card p{margin:.3em 0}
+.debrief-slide .debrief-grid{gap:.7vw}
+.debrief-slide .move{padding:.85vw 1vw}
+
+
+/* V1.17 — extra-large classroom secondary text; headings unchanged */
+.small{font-size:clamp(21px,1.9vw,29px)!important;line-height:1.28}
+.demo-note{font-size:clamp(19px,1.6vw,24px)!important}
+.scholar-slide .demo-note{font-size:clamp(18px,1.45vw,22px)!important}
+.review-hint{font-size:clamp(19px,1.55vw,23px)!important}
+.fake-result .small{font-size:clamp(18px,1.45vw,22px)!important}
+.quest-qr-url{font-size:clamp(15px,1.15vw,18px)!important}
+.timer-label{font-size:clamp(16px,1.35vw,21px)!important}
+.research-timer-slide .research-launch-timer .timer-label{font-size:clamp(14px,1.05vw,17px)!important}
+.bottom{font-size:clamp(16px,1.15vw,19px)!important}
+.topline{font-size:clamp(14px,1.2vw,19px)!important}
+.objective .num,.sendoff-num{font-size:clamp(15px,1.05vw,18px)!important}
+.answer.revealable::after{font-size:clamp(15px,1.05vw,18px)!important}
+
+
+/* V1.18 — presentation-scale callouts and supporting text */
+.pause{
+  font-size:clamp(23px,2.05vw,31px)!important;
+  line-height:1.3!important;
+  padding:1em 1.2em!important;
+}
+.debrief-final .pause{
+  font-size:clamp(22px,1.9vw,29px)!important;
+}
+.answer .reveal-answer{
+  font-size:clamp(22px,1.85vw,28px)!important;
+  line-height:1.28!important;
+}
+.quest-launch-copy p{
+  font-size:clamp(24px,2.25vw,34px)!important;
+}
+
+
+/* V1.19 — fullscreen fit fix: preserve larger readable type without clipping */
+.slide{
+  height:100dvh!important;
+  min-height:0!important;
+  padding-top:clamp(22px,4vh,48px)!important;
+  padding-bottom:clamp(54px,7vh,76px)!important;
+}
+.slide.active{overflow:hidden!important}
+
+/* Let dense content compress vertically rather than fall below the viewport. */
+.answer-grid{gap:clamp(8px,1vh,14px)!important}
+.answer{padding:clamp(12px,1.4vh,20px) clamp(16px,1.2vw,24px)!important}
+.pause{
+  margin-top:clamp(8px,1.2vh,16px)!important;
+  padding:clamp(12px,1.5vh,18px) clamp(16px,1.2vw,24px)!important;
+}
+.debrief-slide .debrief-grid{
+  margin-top:clamp(6px,.8vh,12px)!important;
+  gap:clamp(7px,.8vh,12px)!important;
+}
+.debrief-slide .move{
+  padding:clamp(9px,1vh,14px) clamp(12px,1vw,18px)!important;
+}
+.debrief-slide .move h3{margin:.1em 0!important}
+.debrief-slide .move p{margin:.12em 0!important;line-height:1.2!important}
+.live-capture{margin-top:clamp(7px,1vh,12px)!important}
+.debrief-slide .live-capture textarea{min-height:clamp(80px,13vh,130px)!important}
+.debrief-final .sendoff{margin-top:clamp(8px,1vh,14px)!important}
+.debrief-final .sendoff-card{padding:clamp(12px,1.3vh,18px) clamp(15px,1.1vw,22px)!important}
+.debrief-final .sendoff-card h2{margin:.18em 0 .28em!important}
+.debrief-final .sendoff-card p{margin:.22em 0!important;line-height:1.22!important}
+
+/* Slide 3 QR/timer: keep the giant QR, but cap it by available viewport height. */
+.quest-launch{gap:2.4vw!important}
+.quest-qr{
+  width:min(32vw,45vh)!important;
+  height:min(32vw,45vh)!important;
+}
+.timer-slide .timer-panel{margin-top:.7vh!important}
+
+/* Slides 6–10: tighten only spacing, not font sizes. */
+.keyword-row{margin-top:1vh!important}
+.syn{margin-top:2.2vh!important}
+.andviz{margin:2.8vh 0!important}
+.scholar-slide .scholar{gap:1.4vw!important}
+.scholar-slide .result-card,.scholar-slide .card{padding:clamp(12px,1.2vw,18px)!important}
+
+/* Footer remains inside the viewport. */
+.bottom{
+  bottom:clamp(8px,1.4vh,16px)!important;
+  padding-top:.55vh!important;
+}
+
+/* Short-height projector/laptop fullscreen safety net. */
+@media (max-height:760px){
+  .slide{
+    padding-top:20px!important;
+    padding-bottom:52px!important;
+  }
+  p,li{line-height:1.2!important}
+  .pause{line-height:1.2!important}
+  .service-strip{margin:1.2vh 0!important}
+  .orientation-slide .go-find{margin:1vh auto 4.5vh!important}
+  .question{margin:.7vh 0!important}
+  .syn{margin-top:1.2vh!important}
+  .andviz{margin:1.6vh 0!important}
+  .debrief-slide .live-capture textarea{min-height:72px!important}
+  .quest-qr{
+    width:min(29vw,40vh)!important;
+    height:min(29vw,40vh)!important;
+  }
+}
+
+
+
+/* V1.20 — Explore scaffolding only; all other slide content/behavior preserved. */
+.explore-device-guide{
+  margin-top:clamp(8px,1.2vh,14px);
+  max-width:760px;
+  display:grid;
+  gap:clamp(5px,.7vh,9px);
+}
+.explore-device-guide>div{
+  border:2px solid rgba(255,255,255,.42);
+  border-radius:12px;
+  padding:clamp(7px,.8vh,10px) clamp(10px,.8vw,14px);
+  background:rgba(255,255,255,.08);
+}
+.explore-device-guide strong{
+  display:block;
+  color:#fff;
+  font-size:clamp(15px,1.15vw,19px);
+  line-height:1.12;
+  margin-bottom:.18em;
+}
+.explore-device-guide span{
+  display:block;
+  color:#f3eafb;
+  font-size:clamp(14px,1.02vw,17px);
+  line-height:1.16;
+}
+/* Slide 3 has more guidance now: reclaim vertical space without shrinking the QR or global type. */
+.timer-slide .quest-launch-copy>p{
+  font-size:clamp(18px,1.55vw,24px)!important;
+  line-height:1.2!important;
+  margin:.25em 0 .35em!important;
+}
+.timer-slide .quest-launch-copy h1{margin-bottom:.18em!important}
+.timer-slide .timer-panel{margin-top:clamp(6px,.8vh,10px)!important;padding:clamp(7px,.8vh,11px) clamp(10px,.8vw,15px)!important}
+@media (max-height:760px){
+  .explore-device-guide{gap:4px;margin-top:6px}
+  .explore-device-guide>div{padding:5px 9px}
+  .explore-device-guide strong{font-size:14px}
+  .explore-device-guide span{font-size:13px}
+  .timer-slide .quest-launch-copy>p{font-size:17px!important}
+}
+
+/* V1.20.3 — Slide 9 only: make call-number retrieval explicit and visible. */
+.callnumber-teach{
+  margin-top:clamp(7px,.8vh,11px);
+  border:3px solid #5b2b82;
+  border-radius:14px;
+  background:#fbf8fd;
+  padding:clamp(9px,1vh,13px) clamp(13px,1.1vw,18px);
+}
+.callnumber-label{font-size:clamp(19px,1.55vw,24px);font-weight:900;color:#5b2b82;letter-spacing:.02em}
+.callnumber-steps{font-size:clamp(18px,1.42vw,22px);line-height:1.24;margin-top:.28em}
+.callnumber-example{font-size:clamp(18px,1.38vw,21px);margin-top:.35em;padding-top:.32em;border-top:1px solid #d9cce3}
+.callnumber-example strong{font-size:1.08em}
+.callnumber-example span{font-weight:800;color:#5b2b82}
+/* Keep this added teaching card on-screen without shrinking the whole deck. */
+.slide:has(.callnumber-teach){padding-top:clamp(18px,3vh,34px)!important;padding-bottom:clamp(48px,6vh,66px)!important}
+.slide:has(.callnumber-teach) h1{margin-bottom:clamp(7px,1vh,13px)!important}
+.slide:has(.callnumber-teach) .filter{margin-top:clamp(5px,.7vh,10px)!important;margin-bottom:clamp(5px,.7vh,10px)!important}
+.slide:has(.callnumber-teach) .pause{margin-top:clamp(5px,.7vh,9px)!important;padding:clamp(9px,1vh,13px) clamp(14px,1vw,20px)!important}
+.slide:has(.callnumber-teach) .demo-actions{margin-top:clamp(5px,.7vh,9px)!important}
+
+
+/* V1.20.4 — live debrief responses; isolated from existing slide layout */
+.live-response-panel{margin-top:1.2vh;background:#fff;border:2px solid #d8c9e5;border-radius:18px;padding:1.1vw 1.25vw;color:#241b2f}
+.live-response-toolbar{display:flex;align-items:center;gap:.8vw;flex-wrap:wrap;margin-bottom:.8vh}
+.live-response-btn{border:0;border-radius:10px;background:#5b2b82;color:#fff;font-weight:900;padding:.55em .9em;font-size:clamp(14px,1.1vw,18px);cursor:pointer}
+.live-response-status{font-size:clamp(13px,1vw,17px);color:#62596d}
+.live-response-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8vw}
+.live-response-col{border:1px solid #ded5e5;border-radius:12px;padding:.7vw;background:#faf8fc;min-width:0}
+.live-response-col h3{font-size:clamp(17px,1.4vw,22px);margin:.05em 0 .4em;color:#5b2b82}
+.live-response-item{font-size:clamp(13px,1vw,17px);line-height:1.22;margin:.35em 0;padding:.35em 0;border-bottom:1px solid #e8e1ec;overflow-wrap:anywhere}
+.live-response-item:last-child{border-bottom:0}
+.live-team{font-weight:900}
+@media(max-width:900px){.live-response-grid{grid-template-columns:1fr}}
+
+
+/* V1.20.5 — Slide 9 fit repair only. Preserve content, give the bottom half breathing room. */
+.slide:has(.slide9-reminders){padding-top:clamp(18px,2.5vh,30px)!important;padding-bottom:clamp(54px,6.5vh,68px)!important}
+.slide:has(.slide9-reminders) h1{font-size:clamp(38px,4.8vw,68px)!important;line-height:1.02!important;margin:.08em 0 .18em!important}
+.slide:has(.slide9-reminders) .filter{gap:1.3vw!important;margin:0!important}
+.slide:has(.slide9-reminders) .fake-results{padding:clamp(7px,.65vw,11px)!important}
+.slide:has(.slide9-reminders) .fake-result{padding:clamp(6px,.55vw,9px)!important}
+.slide:has(.slide9-reminders) .fake-filter{padding:clamp(7px,.7vw,11px)!important}
+.slide:has(.slide9-reminders) .fake-filter h2{margin:.05em 0 .2em!important}
+.slide:has(.slide9-reminders) .fake-filter div{padding:.38em!important;margin:.25em 0!important}
+.slide9-reminders{display:grid;grid-template-columns:.82fr 1.45fr;gap:1vw;align-items:stretch;margin-top:clamp(7px,.8vh,11px)}
+.slide9-rule{border:2px solid #e1bb36;background:#fff8dd;border-radius:14px;padding:clamp(9px,1vh,13px) clamp(12px,1vw,17px);display:flex;flex-direction:column;justify-content:center;gap:.22em;font-size:clamp(18px,1.4vw,22px);line-height:1.18}
+.slide9-rule span{font-weight:900}
+.slide:has(.slide9-reminders) .callnumber-teach{margin:0!important;padding:clamp(8px,.85vh,11px) clamp(12px,1vw,16px)!important;border-width:2px!important}
+.slide:has(.slide9-reminders) .callnumber-label{font-size:clamp(18px,1.35vw,22px)!important}
+.slide:has(.slide9-reminders) .callnumber-steps{font-size:clamp(17px,1.25vw,20px)!important;line-height:1.16!important;margin-top:.15em!important}
+.slide:has(.slide9-reminders) .callnumber-example{display:flex;gap:.65em;align-items:baseline;flex-wrap:wrap;font-size:clamp(16px,1.18vw,19px)!important;margin-top:.2em!important;padding-top:.2em!important}
+.slide9-demo{margin-top:clamp(5px,.6vh,8px)!important;gap:.7vw!important}
+.slide9-demo .demo-link{padding:.45em .7em!important}
+.slide9-demo .demo-note{margin:0!important;font-size:clamp(15px,1.15vw,18px)!important}
+@media(max-height:760px){.slide9-reminders{margin-top:5px}.slide:has(.slide9-reminders) .fake-result{padding:4px 7px!important}.slide:has(.slide9-reminders) .fake-filter div{padding:.28em!important;margin:.18em 0!important}}
+
+</style>
+
+<style>
+/* V1.20.1 — Slide 3 fit fix ONLY. Preserve V1.20 content and all other slides. */
+.timer-slide{padding-top:clamp(16px,2.4vh,28px)!important;padding-bottom:clamp(46px,5.5vh,58px)!important;}
+.timer-slide .quest-launch{align-items:start!important;gap:2vw!important;}
+.timer-slide .topline{margin-bottom:clamp(4px,.5vh,7px)!important;}
+.timer-slide .quest-launch-copy h1{font-size:clamp(34px,4.4vw,64px)!important;line-height:1.02!important;margin:.05em 0 .12em!important;}
+.timer-slide .quest-launch-copy>p{font-size:clamp(16px,1.35vw,21px)!important;line-height:1.16!important;margin:.12em 0 .25em!important;}
+.timer-slide .explore-device-guide{margin-top:4px!important;gap:4px!important;}
+.timer-slide .explore-device-guide>div{padding:5px 9px!important;border-width:1px!important;}
+.timer-slide .explore-device-guide strong{font-size:clamp(13px,1vw,16px)!important;line-height:1.08!important;margin:0 0 1px!important;}
+.timer-slide .explore-device-guide span{font-size:clamp(12px,.92vw,15px)!important;line-height:1.08!important;}
+.timer-slide .timer-panel{margin-top:5px!important;padding:5px 9px!important;max-width:620px!important;}
+.timer-slide .timer-display{font-size:clamp(32px,4vw,54px)!important;line-height:1!important;}
+.timer-slide .timer-label{font-size:clamp(12px,1vw,16px)!important;line-height:1.05!important;margin:1px 0 4px!important;}
+.timer-slide .timer-actions{gap:5px!important;}
+.timer-slide .timer-btn{font-size:clamp(10px,.78vw,13px)!important;padding:.35em .55em!important;}
+.timer-slide .quest-qr{width:min(30vw,41vh)!important;height:min(30vw,41vh)!important;}
+.timer-slide .quest-qr-wrap{gap:.35vh!important;}
+.timer-slide .quest-qr-label{font-size:clamp(16px,1.35vw,21px)!important;}
+.timer-slide .quest-qr-url{font-size:clamp(11px,.9vw,15px)!important;}
+@media(max-height:760px){
+ .timer-slide{padding-top:14px!important;padding-bottom:44px!important;}
+ .timer-slide .quest-launch-copy h1{font-size:clamp(30px,4vw,50px)!important;}
+ .timer-slide .quest-launch-copy>p{font-size:15px!important;}
+ .timer-slide .explore-device-guide strong{font-size:13px!important;}
+ .timer-slide .explore-device-guide span{font-size:12px!important;}
+ .timer-slide .quest-qr{width:min(27vw,36vh)!important;height:min(27vw,36vh)!important;}
+}
+</style>
+
+<style>
+/* V1.20.2 — Slide 3 balance pass ONLY: restore classroom-readable type while keeping the full slide in frame. */
+.timer-slide{padding-top:clamp(14px,2vh,24px)!important;padding-bottom:clamp(44px,5vh,54px)!important;}
+.timer-slide .quest-launch{align-items:start!important;gap:1.8vw!important;}
+.timer-slide .quest-launch-copy h1{font-size:clamp(36px,4.5vw,62px)!important;line-height:1.02!important;margin:.04em 0 .1em!important;}
+.timer-slide .quest-launch-copy>p{font-size:clamp(18px,1.55vw,24px)!important;line-height:1.18!important;margin:.1em 0 .22em!important;}
+.timer-slide .explore-device-guide{margin-top:5px!important;gap:5px!important;}
+.timer-slide .explore-device-guide>div{padding:6px 10px!important;border-width:1px!important;}
+.timer-slide .explore-device-guide strong{font-size:clamp(15px,1.12vw,18px)!important;line-height:1.1!important;margin:0 0 2px!important;}
+.timer-slide .explore-device-guide span{font-size:clamp(14px,1.02vw,17px)!important;line-height:1.1!important;}
+.timer-slide .timer-panel{margin-top:5px!important;padding:5px 9px!important;max-width:620px!important;}
+.timer-slide .timer-display{font-size:clamp(34px,4.1vw,56px)!important;line-height:1!important;}
+.timer-slide .timer-label{font-size:clamp(13px,1.05vw,17px)!important;line-height:1.05!important;margin:1px 0 4px!important;}
+.timer-slide .timer-actions{gap:5px!important;}
+.timer-slide .timer-btn{font-size:clamp(11px,.82vw,14px)!important;padding:.36em .58em!important;}
+.timer-slide .quest-qr{width:min(29vw,39vh)!important;height:min(29vw,39vh)!important;}
+.timer-slide .quest-qr-wrap{gap:.3vh!important;}
+.timer-slide .quest-qr-label{font-size:clamp(17px,1.4vw,22px)!important;}
+.timer-slide .quest-qr-url{font-size:clamp(12px,.95vw,16px)!important;}
+@media(max-height:760px){
+ .timer-slide{padding-top:12px!important;padding-bottom:42px!important;}
+ .timer-slide .quest-launch-copy h1{font-size:clamp(34px,4.2vw,54px)!important;}
+ .timer-slide .quest-launch-copy>p{font-size:17px!important;line-height:1.14!important;}
+ .timer-slide .explore-device-guide{gap:4px!important;margin-top:4px!important;}
+ .timer-slide .explore-device-guide>div{padding:5px 9px!important;}
+ .timer-slide .explore-device-guide strong{font-size:14px!important;}
+ .timer-slide .explore-device-guide span{font-size:13px!important;}
+ .timer-slide .timer-display{font-size:36px!important;}
+ .timer-slide .timer-label{font-size:13px!important;}
+ .timer-slide .quest-qr{width:min(27vw,35vh)!important;height:min(27vw,35vh)!important;}
+}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide hero active">
+  <div class="topline">LEC 100 · Lenox Library</div>
+  <h1>Welcome to the Great<br>Lenox Library Octopus Hunt</h1>
+  <div class="objectives">
+    <div class="objective">
+      <div class="num">Today · 01</div>
+      <p>Discover resources and services available through <strong>Lenox Library</strong>.</p>
+    </div>
+    <div class="objective">
+      <div class="num">Today · 02</div>
+      <p>Practice finding the <strong>essential research resources</strong> you'll use throughout your college career.</p>
+    </div>
+  </div>
+  <div class="bigemoji">🐙</div>
+  <div class="bottom" style="color:#e9dcf5"><span>UW–Whitewater at Rock County</span><span>1 / 13</span></div>
+</section>
+
+<section class="slide hero orientation-slide">
+  <div class="topline">Before the Hunt · Meet Your Library</div>
+  <h1>Lenox is here to make college<br>easier—and more fun.</h1>
+  <p>There are resources, people, and services here to help you learn, create, solve problems, and get unstuck.</p>
+  <div class="service-strip" aria-label="Examples of Lenox Library resources and services">
+    <div class="service-card"><span class="service-icon">📚</span><strong>Books</strong></div>
+    <div class="service-card"><span class="service-icon">🖨️</span><strong>Printing</strong></div>
+    <div class="service-card"><span class="service-icon">🔎</span><strong>Research Help</strong></div>
+    <div class="service-card"><span class="service-icon">✨</span><strong>And More</strong></div>
+  </div>
+  <div class="go-find">Your mission: Go find them.</div>
+  <div class="bottom" style="color:#e9dcf5"><span>The Great Lenox Library Octopus Hunt</span><span>2 / 13</span></div>
+</section>
+
+<section class="slide hero timer-slide">
+  <div class="topline">Explore Lenox · Your First Quest</div>
+  <div class="quest-launch">
+    <div class="quest-launch-copy">
+      <h1>Scan. Join your team.<br>Follow your missions.</h1>
+      <p>Scan the QR code to open the <strong>Lenox Library Quest</strong>. You have <strong>10 minutes</strong> to complete your team's Explore missions.</p>
+      <div class="explore-device-guide" aria-label="Where to complete Explore missions">
+        <div><strong>📱 KEEP THE QUEST ON YOUR PHONE</strong><span>Read each mission there.</span></div>
+        <div><strong>🖥️ USE A LIBRARY COMPUTER</strong><span>💬 24/7 Help &nbsp;·&nbsp; 📖 Research &amp; Citation Guides</span></div>
+        <div><strong>🚶 EXPLORE THE LIBRARY</strong><span>🎒 Hidden Tech &nbsp;·&nbsp; 📅 Find Camille</span></div>
+      </div>
+      <div class="timer-panel" id="exploreTimerPanel">
+        <div class="timer-display" id="exploreTimerDisplay">10:00</div>
+        <div class="timer-label" id="exploreTimerLabel">Timer has not started.</div>
+        <div class="timer-actions">
+          <button class="timer-btn" type="button" onclick="timerStart('explore');event.stopPropagation()">START 10 MINUTES</button>
+          <button class="timer-btn secondary" type="button" onclick="timerPause('explore');event.stopPropagation()">PAUSE</button>
+          <button class="timer-btn secondary" type="button" onclick="timerReset('explore');event.stopPropagation()">RESET</button>
+        </div>
+      </div>
+    </div>
+    <div class="quest-qr-wrap">
+      <img class="quest-qr" src="https://quickchart.io/qr?text=https%3A%2F%2Fcac2278.github.io%2Fapp-find-the-octopus%2F&size=700&margin=2&ecLevel=H" alt="QR code to open the Lenox Library Quest" />
+      <div class="quest-qr-label">SCAN TO START THE QUEST</div>
+      <div class="quest-qr-url">https://cac2278.github.io/app-find-the-octopus/</div>
+    </div>
+  </div>
+  <div class="bottom" style="color:#e9dcf5"><span>Explore Quest · Return here when time is up</span><span>3 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="topline">Lenox Library Quest · Return to Base</div>
+  <h1>What did you discover?</h1>
+  <p class="review-hint">Tell us what your team found. Click each card to reveal the answer.</p>
+  <div class="answer-grid">
+    <div class="answer revealable" role="button" tabindex="0" aria-expanded="false"><strong>Hidden Tech</strong><div class="reveal-answer">VR · games · calculators · webcams · USB drives · telescope — <b>all of the above</b></div></div>
+    <div class="answer revealable" role="button" tabindex="0" aria-expanded="false"><strong>24/7 Help</strong><div class="reveal-answer">Ask a Librarian needs your <b>name, email, and question</b>. <b>Ask a Librarian is available from every library page.</b></div></div>
+    <div class="answer revealable" role="button" tabindex="0" aria-expanded="false"><strong>Research & Citation Guides</strong><div class="reveal-answer">Subject/course guides + Library Basics. Citation guides include <b>APA, MLA, and Turabian</b>.</div></div>
+    <div class="answer revealable" role="button" tabindex="0" aria-expanded="false"><strong>Find Camille</strong><div class="reveal-answer">Help starting, choosing search terms, finding sources, evaluating, citations, and getting unstuck.</div></div>
+  </div>
+  <div class="pause"><b>The point:</b> You do not have to know everything about the library. You need to know enough to take the next step—and where to get help.</div>
+  <div class="bottom"><span>Explore Quest debrief · ~2 min</span><span>4 / 13</span></div>
+</section>
+
+<section class="slide hero">
+  <div class="topline">Research Quest · Mini-Lesson</div>
+  <h1>How do you turn a question<br>into a search?</h1>
+  <p>We'll practice with elephants. Then you'll transfer the same moves to octopuses.</p>
+  <div class="bigemoji">🐘</div>
+  <div class="bottom" style="color:#e9dcf5"><span>Research lesson begins</span><span>5 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="topline">Move 1 · Keywords</div>
+  <h1>Search the ideas.<br>Not the sentence.</h1>
+  <div class="question">How does habitat loss affect African elephants?</div>
+  <div class="card soft">
+    <p><span class="strike">How does</span> <span class="keep">habitat loss</span> <span class="strike">affect</span> <span class="keep">African elephants</span>?</p>
+  </div>
+  <div class="keyword-row"><span class="keyword">African elephants</span><span class="keyword">habitat loss</span></div>
+  <div class="pause"><b>Keywords = WHAT ABOUT?</b> Pull out the ideas a source would actually discuss.</div>
+  <div class="bottom"><span>Model the same move students use on Communication</span><span>6 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="topline">Move 2 · Adjust</div>
+  <h1>One idea can have more than one name.</h1>
+  <div class="refrain"><span>SEARCH</span><span>LOOK</span><span class="current">ADJUST</span></div>
+  <div class="syn">
+    <div>habitat loss</div><div class="arrow">→</div><div>habitat destruction</div><div class="arrow">→</div><div>habitat fragmentation</div>
+  </div>
+  <div class="syn" style="margin-top:1.4vh">
+    <div>elephant</div><div class="arrow">→</div><div>African elephant</div><div class="arrow">→</div><div>Loxodonta</div>
+  </div>
+  <div class="pause"><b>First search not perfect?</b> Don't start over. Try a different word for one of your main ideas.</div>
+  <div class="bottom"><span>SEARCH → LOOK → ADJUST</span><span>7 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="topline">Move 3 · AND</div>
+  <h1>Connect different ideas.</h1>
+  <div class="andviz">
+    <div class="concept">elephant</div><div class="and">AND</div><div class="concept">habitat loss</div>
+  </div>
+  <div class="searchbox">elephant AND habitat loss</div>
+  <div class="pause"><b>AND</b> tells the search to find sources that include <b>both ideas</b>.</div>
+  <div class="bottom"><span>Use AND in all capital letters</span><span>8 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="topline">Move 4 · Resource Type</div>
+  <h1>Your topic didn't change.<br>Your assignment did.</h1>
+  <div class="filter">
+    <div class="fake-results">
+      <div class="fake-result"><b>Elephant movement and fragmented landscapes</b><br><span class="small">Article</span></div>
+      <div class="fake-result"><b>African Elephants: Ecology and Conservation</b><br><span class="small">Book</span></div>
+      <div class="fake-result"><b>Habitat pressure and elephant populations</b><br><span class="small">Article</span></div>
+    </div>
+    <div class="fake-filter">
+      <h2>Resource Type</h2>
+      <div class="selected">✓ Articles</div>
+      <div>Books</div>
+      <div>Other</div>
+    </div>
+  </div>
+  <div class="slide9-reminders">
+    <div class="slide9-rule"><b>Keywords = WHAT ABOUT?</b><span>Resource Type = WHAT KIND?</span></div>
+    <div class="callnumber-teach" aria-label="How to find a book call number">
+      <div class="callnumber-label">📍 FIND THE CALL NUMBER</div>
+      <div class="callnumber-steps"><b>Books</b> → open the record → <b>Availability / Location</b></div>
+      <div class="callnumber-example"><strong>CALL NUMBER: QL737.P98 ...</strong> <span>Write it on your Quest Card.</span></div>
+    </div>
+  </div>
+  <div class="demo-actions slide9-demo">
+    <a class="demo-link" href="https://www.uww.edu/library" target="_blank" rel="noopener">↗ OPEN RESEARCH@UWW FOR LIVE DEMO</a>
+    <p class="demo-note">Opens in a new tab · close the tab to return here.</p>
+  </div>
+  <div class="bottom"><span>Professor asks for an article → filter to Articles</span><span>9 / 13</span></div>
+</section>
+
+<section class="slide scholar-slide">
+  <div class="topline">Move 5 · Follow the Research Trail</div>
+  <h1>One useful source can lead you to more.</h1>
+  <div class="scholar">
+    <div class="result-card">
+      <div class="small">Google Scholar result</div>
+      <div class="result-title">Habitat fragmentation and African elephant behavior</div>
+      <p class="small">Authors · Journal · Year</p>
+      <span class="related">Related articles</span>
+    </div>
+    <div class="card soft">
+      <h2>What do you do?</h2>
+      <p>1. Find a useful Scholar result.</p>
+      <p>2. Look underneath it.</p>
+      <p>3. Open <b>Related articles</b>.</p>
+      <p class="check">✓ Follow the trail instead of starting over.</p>
+      <div class="demo-actions">
+        <a class="demo-link" href="https://scholar.google.com/" target="_blank" rel="noopener">↗ OPEN GOOGLE SCHOLAR</a>
+        <p class="demo-note">Live demo · opens in a new tab.</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"><span>Same move you'll use in the octopus Quest</span><span>10 / 13</span></div>
+</section>
+
+<section class="slide hero research-timer-slide">
+  <div class="topline">Your turn · Research Quest</div>
+  <h1>Same moves.<br>New animal.</h1>
+  <div class="refrain"><span style="background:#fff;color:#563184">SEARCH</span><span style="background:#fff;color:#563184">LOOK</span><span style="background:#fff;color:#563184">ADJUST</span></div>
+  <p>🐙 Start on <b>Communication</b>. Your 15-minute timer begins there.</p>
+  <p>Use your Quest Card. If you get stuck, <b>ask Camille</b>—help-seeking is part of research.</p>
+  <div class="timer-panel research-launch-timer" id="researchTimerPanel">
+    <div class="timer-display" id="researchTimerDisplay">15:00</div>
+    <div class="timer-label" id="researchTimerLabel">Start this when students begin Communication.</div>
+    <div class="timer-actions">
+      <button class="timer-btn" type="button" onclick="timerStart('research');event.stopPropagation()">START 15 MINUTES</button>
+      <button class="timer-btn secondary" type="button" onclick="timerPause('research');event.stopPropagation()">PAUSE</button>
+      <button class="timer-btn secondary" type="button" onclick="timerReset('research');event.stopPropagation()">RESET</button>
+    </div>
+  </div>
+  <div class="bottom" style="color:#e9dcf5"><span>Launch Research Quest · 15 min</span><span>11 / 13</span></div>
+</section>
+
+<section class="slide debrief-slide">
+  <div class="topline">After the Quest · Debrief</div>
+  <h1>What did you actually do?</h1>
+  <div class="debrief-grid">
+    <div class="move"><div class="icon">🔑</div><h3>Keywords</h3><p>You turned questions into searchable ideas.</p></div>
+    <div class="move"><div class="icon">🔄</div><h3>Adjust</h3><p>You changed words when a first search wasn't enough.</p></div>
+    <div class="move"><div class="icon">➕</div><h3>AND</h3><p>You connected different concepts.</p></div>
+    <div class="move"><div class="icon">📦</div><h3>Resource Type</h3><p>You matched the results to what the assignment asked for.</p></div>
+    <div class="move"><div class="icon">🎓</div><h3>Google Scholar</h3><p>You tried the strategy in a different search tool.</p></div>
+    <div class="move"><div class="icon">🔗</div><h3>Related articles</h3><p>You let one useful source lead you to another.</p></div>
+  </div>
+  <div class="live-capture">
+    <label for="articlesFound1">What articles did we find?</label>
+    <textarea id="articlesFound1" placeholder="Type student article titles here…"></textarea>
+  </div>
+  
+  <div class="live-response-panel" id="liveResponsePanel">
+    <div class="live-response-toolbar">
+      <button class="live-response-btn" type="button" onclick="loadLiveResponses(event)">LOAD TODAY'S RESPONSES</button>
+      <span class="live-response-status" id="liveResponseStatus">Responses stay hidden until you load them.</span>
+    </div>
+    <div class="live-response-grid" id="liveResponseGrid">
+      <div class="live-response-col"><h3>🔎 Articles</h3><div class="small">Student finds will appear here.</div></div>
+      <div class="live-response-col"><h3>📚 Books + call numbers</h3><div class="small">Student finds will appear here.</div></div>
+      <div class="live-response-col"><h3>🎓 Databases</h3><div class="small">Student finds will appear here.</div></div>
+    </div>
+  </div>
+<div class="bottom"><span>Lenox Library Quest · Research debrief</span><span>12 / 13</span></div>
+</section>
+
+<section class="slide debrief-slide debrief-final">
+  <div class="topline">Before You Go · Research First Aid</div>
+  <h1>Take your research backup with you.</h1>
+  <p class="lead">The Quest ends today. Research doesn't.</p>
+  <div class="sendoff">
+    <div class="sendoff-card soft">
+      <div class="sendoff-num">Before you leave · 01</div>
+      <h2>📩 Email yourself Research First Aid</h2>
+      <p>Use the option at the end of the Quest to send yourself the <strong>Research First Aid toolkit</strong>.</p>
+      <p class="small">Keep it for the next paper, project, or research assignment.</p>
+    </div>
+    <div class="sendoff-card">
+      <div class="sendoff-num">During the semester · 02</div>
+      <h2>Ask Camille for research help</h2>
+      <p>Come back when you need help <strong>getting started, choosing search terms, finding sources, evaluating information, or working through citations.</strong></p>
+      <p class="check">You do not have to figure it out alone.</p>
+    </div>
+  </div>
+  <div class="pause"><b>Remember:</b> You don't need a perfect first search. You need a next move—and a place to ask for help.</div>
+  <div class="bottom"><span>Lenox Library Quest · Keep Research First Aid</span><span>13 / 13</span></div>
+</section>
+
+</div>
+<div id="activeTimerMini" class="timer-mini" aria-live="polite"></div>
+<div class="controls" aria-label="Slide controls">
+<button id="prev" type="button">←</button><button id="next" type="button">→</button>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,j)=>s.classList.toggle('active',j===i));}
+document.getElementById('prev').addEventListener('click',()=>show(i-1));
+document.getElementById('next').addEventListener('click',()=>show(i+1));
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);});
+
+const noteIds=['articlesFound1'];
+noteIds.forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.value=sessionStorage.getItem('lenox_'+id)||'';
+  el.addEventListener('input',()=>sessionStorage.setItem('lenox_'+id,el.value));
+});
+
+
+document.querySelectorAll('.answer.revealable').forEach(card=>{
+  const toggle=()=>{
+    const open=card.classList.toggle('revealed');
+    card.setAttribute('aria-expanded',open?'true':'false');
+  };
+  card.addEventListener('click',e=>{e.stopPropagation();toggle();});
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();toggle();}
+  });
+});
+
+
+const classroomTimers={explore:{duration:600,remaining:600,running:false,lastStart:null},research:{duration:900,remaining:900,running:false,lastStart:null}};
+let classroomTimerTick=null;
+function timerSeconds(name){const x=classroomTimers[name];if(!x)return 0;if(!x.running)return Math.max(0,x.remaining);return Math.max(0,x.remaining-Math.floor((Date.now()-x.lastStart)/1000))}
+function timerFormat(sec){sec=Math.max(0,Math.ceil(sec));const m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function timerStart(name){const x=classroomTimers[name];if(!x)return;if(timerSeconds(name)<=0)x.remaining=x.duration;if(!x.running){x.lastStart=Date.now();x.running=true}timerEnsureTick();timerRender()}
+function timerPause(name){const x=classroomTimers[name];if(!x||!x.running)return;x.remaining=timerSeconds(name);x.running=false;x.lastStart=null;timerRender()}
+function timerReset(name){const x=classroomTimers[name];if(!x)return;x.running=false;x.lastStart=null;x.remaining=x.duration;timerRender()}
+function timerEnsureTick(){if(!classroomTimerTick)classroomTimerTick=setInterval(timerRender,250)}
+function timerRenderOne(name){const x=classroomTimers[name];let sec=timerSeconds(name);if(x.running&&sec<=0){x.running=false;x.remaining=0;x.lastStart=null;sec=0}const d=document.getElementById(name+'TimerDisplay'),l=document.getElementById(name+'TimerLabel'),p=document.getElementById(name+'TimerPanel');if(d)d.textContent=timerFormat(sec);if(l)l.textContent=sec<=0?'Time is up — finish your current step and return to Base.':x.running?'Countdown running.':sec<x.duration?'Paused.':name==='research'?'Start this when students begin Communication.':'Timer has not started.';if(p){p.classList.toggle('warning',sec>0&&sec<=180);p.classList.toggle('ended',sec<=0)}}
+function timerRender(){timerRenderOne('explore');timerRenderOne('research');const mini=document.getElementById('activeTimerMini');if(!mini)return;const active=['research','explore'].find(n=>classroomTimers[n].running);if(active){const sec=timerSeconds(active);mini.textContent=(active==='explore'?'Explore ':'Research ')+timerFormat(sec);mini.classList.add('visible');mini.classList.toggle('warning',sec<=180)}else mini.classList.remove('visible','warning')}
+timerEnsureTick();timerRender();
+
+</script>
+
+<script>
+/* V1.20.4 — Live class response loader */
+const LENOX_RESPONSE_ENDPOINT = "https://script.google.com/macros/s/AKfycbzgjHgtLqIbB8lrdxSB0IRjz2HcvNP0IzkI_V6p_ZHjoLu6bDqJpw1zV3ElM4nOhLLxuA/exec";
+
+function lrEscape(v){
+  return String(v == null ? "" : v).replace(/[&<>"']/g, function(c){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;","\\\"":"&quot;","'":"&#39;"})[c];
+  });
+}
+function lrField(row, names){
+  for (const n of names) {
+    if (row && row[n] != null && String(row[n]).trim() !== "") return String(row[n]).trim();
+  }
+  return "";
+}
+function lrNormalize(payload){
+  if (Array.isArray(payload)) return payload;
+  if (payload && Array.isArray(payload.responses)) return payload.responses;
+  if (payload && Array.isArray(payload.rows)) return payload.rows;
+  if (payload && Array.isArray(payload.data)) return payload.data;
+  return [];
+}
+function lrLatest(rows){
+  const map=new Map();
+  rows.forEach((r,i)=>{
+    const team=lrField(r,["team","Team"])||"Team";
+    const mission=lrField(r,["mission_id","Mission ID","mission","Mission"]);
+    const event=lrField(r,["event","Event"]);
+    if(event && event!=="answer_saved") return;
+    if(!mission) return;
+    map.set(team+"|"+mission,{...r,_i:i});
+  });
+  return [...map.values()];
+}
+function lrRenderItems(rows, missionIds, kind){
+  const selected=rows.filter(r=>missionIds.includes(lrField(r,["mission_id","Mission ID","mission","Mission"])));
+  if(!selected.length) return '<div class="small">No responses yet.</div>';
+  return selected.map(r=>{
+    const team=lrEscape(lrField(r,["team","Team"])||"Team");
+    const a=lrEscape(lrField(r,["answer","Answer"]));
+    const a2=lrEscape(lrField(r,["answer_2","Answer 2"]));
+    const type=lrEscape(lrField(r,["response_type","Response Type"]));
+    let body=a;
+    if(kind==="book" && a2) body += " — <strong>"+a2+"</strong>";
+    if(kind==="database" && type) body += " <span class=\"small\">("+type+")</span>";
+    return '<div class="live-response-item"><span class="live-team">'+team+':</span> '+(body||"—")+'</div>';
+  }).join("");
+}
+async function loadLiveResponses(ev){
+  if(ev) ev.stopPropagation();
+  const status=document.getElementById("liveResponseStatus");
+  const grid=document.getElementById("liveResponseGrid");
+  if(!status||!grid) return;
+  status.textContent="Loading…";
+  try{
+    const joiner=LENOX_RESPONSE_ENDPOINT.includes("?")?"&":"?";
+    const res=await fetch(LENOX_RESPONSE_ENDPOINT+joiner+"action=get_responses&t="+Date.now(),{cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const payload=await res.json();
+    const rows=lrLatest(lrNormalize(payload));
+    grid.innerHTML=
+      '<div class="live-response-col"><h3>🔎 Articles</h3>'+lrRenderItems(rows,["article"],"article")+'</div>'+
+      '<div class="live-response-col"><h3>📚 Books + call numbers</h3>'+lrRenderItems(rows,["book"],"book")+'</div>'+
+      '<div class="live-response-col"><h3>🎓 Databases</h3>'+lrRenderItems(rows,["database"],"database")+'</div>';
+    status.textContent="Loaded "+rows.length+" latest team responses. Click again to refresh.";
+  }catch(err){
+    status.textContent="Could not load responses. The Apps Script needs the matching doGet() code and a new deployment.";
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>
