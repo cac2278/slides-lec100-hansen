@@ -857,6 +857,133 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
  .quest-destinations .demo-note{font-size:24px!important}
 }
 </style>
+
+<style id="slide3-24pt-readability">
+/* Slide 3 only: 24pt (32px) minimum, with more breathing room. */
+.quest-destinations{padding-top:clamp(18px,2.2vh,28px)!important;padding-bottom:54px!important;}
+.quest-destinations .topline{font-size:max(32px,2vw)!important;line-height:1.08!important;margin-bottom:8px!important;}
+.quest-destinations h1{margin:.04em 0 .18em!important;}
+.quest-destinations .tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(12px,1.15vw,18px)!important;margin-top:10px!important;}
+.quest-destinations .tool-card{padding:clamp(12px,1.25vh,18px) clamp(14px,1.15vw,18px)!important;min-height:0!important;}
+.quest-destinations .tool-card .where{font-size:32px!important;line-height:1.08!important;margin-bottom:6px!important;}
+.quest-destinations .tool-card h2{font-size:clamp(34px,2.25vw,40px)!important;line-height:1.05!important;margin:0 0 7px!important;}
+.quest-destinations .tool-card p{font-size:32px!important;line-height:1.16!important;margin:0!important;}
+.quest-destinations .demo-actions{margin-top:12px!important;display:flex!important;align-items:center!important;gap:16px!important;flex-wrap:wrap!important;}
+.quest-destinations .demo-link{font-size:32px!important;line-height:1.08!important;}
+.quest-destinations .demo-note{font-size:32px!important;line-height:1.1!important;margin:0!important;}
+.quest-destinations .bottom{font-size:32px!important;}
+@media (max-height:760px){
+ .quest-destinations{padding-top:10px!important;padding-bottom:44px!important;}
+ .quest-destinations .topline{font-size:32px!important;margin-bottom:3px!important;}
+ .quest-destinations h1{margin:0 0 4px!important;}
+ .quest-destinations .tool-grid{gap:8px!important;margin-top:4px!important;}
+ .quest-destinations .tool-card{padding:8px 10px!important;}
+ .quest-destinations .tool-card .where{font-size:32px!important;line-height:1!important;margin-bottom:3px!important;}
+ .quest-destinations .tool-card h2{font-size:34px!important;line-height:1!important;margin:0 0 3px!important;}
+ .quest-destinations .tool-card p{font-size:32px!important;line-height:1.05!important;}
+ .quest-destinations .demo-actions{margin-top:5px!important;gap:10px!important;}
+ .quest-destinations .demo-link,.quest-destinations .demo-note,.quest-destinations .bottom{font-size:32px!important;}
+}
+</style>
+
+<style id="slide3-large-resource-text-v15">
+/* V15 — Slide 3 only. Make the six starting-point cards and demo area genuinely classroom-readable. */
+.quest-destinations .tool-grid{gap:14px!important;margin-top:10px!important;}
+.quest-destinations .tool-card{padding:14px 16px!important;}
+.quest-destinations .tool-card .where{font-size:38px!important;line-height:1.05!important;margin-bottom:7px!important;}
+.quest-destinations .tool-card h2{font-size:46px!important;line-height:1.03!important;margin:0 0 8px!important;}
+.quest-destinations .tool-card p{font-size:40px!important;line-height:1.10!important;margin:0!important;}
+.quest-destinations .demo-actions{margin-top:12px!important;gap:18px!important;}
+.quest-destinations .demo-link{font-size:38px!important;line-height:1.05!important;padding:12px 18px!important;}
+.quest-destinations .demo-note{font-size:36px!important;line-height:1.08!important;}
+@media(max-height:800px){
+ .quest-destinations{padding-top:8px!important;padding-bottom:42px!important;}
+ .quest-destinations .topline{margin-bottom:2px!important;}
+ .quest-destinations h1{margin:0 0 3px!important;}
+ .quest-destinations .tool-grid{gap:8px!important;margin-top:4px!important;}
+ .quest-destinations .tool-card{padding:8px 11px!important;}
+ .quest-destinations .tool-card .where{font-size:34px!important;margin-bottom:3px!important;}
+ .quest-destinations .tool-card h2{font-size:42px!important;margin-bottom:3px!important;}
+ .quest-destinations .tool-card p{font-size:36px!important;line-height:1.04!important;}
+ .quest-destinations .demo-actions{margin-top:5px!important;gap:10px!important;}
+ .quest-destinations .demo-link{font-size:34px!important;padding:8px 12px!important;}
+ .quest-destinations .demo-note{font-size:34px!important;}
+}
+</style>
+
+<style id="slide3-final-large-type-override">
+/* FINAL slide 3 override: intentionally after ALL prior responsive rules */
+.quest-destinations{
+  padding-top:8px!important;
+  padding-bottom:44px!important;
+}
+.quest-destinations .topline{
+  font-size:34px!important;
+  margin-bottom:2px!important;
+}
+.quest-destinations h1{
+  margin:0 0 4px!important;
+}
+.quest-destinations .tool-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px 12px!important;
+  margin-top:5px!important;
+}
+.quest-destinations .tool-card{
+  padding:10px 13px!important;
+  min-height:0!important;
+}
+.quest-destinations .tool-card .where{
+  font-size:44px!important;
+  line-height:1.02!important;
+  margin-bottom:5px!important;
+  letter-spacing:.025em!important;
+}
+.quest-destinations .tool-card h2{
+  font-size:52px!important;
+  line-height:1.02!important;
+  margin:0 0 5px!important;
+}
+.quest-destinations .tool-card p{
+  font-size:44px!important;
+  line-height:1.07!important;
+  margin:0!important;
+}
+.quest-destinations .demo-actions{
+  margin-top:7px!important;
+  gap:12px!important;
+}
+.quest-destinations .demo-link{
+  font-size:40px!important;
+  line-height:1.04!important;
+  padding:9px 14px!important;
+}
+.quest-destinations .demo-note{
+  font-size:38px!important;
+  line-height:1.05!important;
+  margin:0!important;
+}
+.quest-destinations .bottom{
+  font-size:32px!important;
+}
+
+/* Do NOT let short-screen rules shrink slide 3 again. */
+@media (max-height: 850px){
+  .quest-destinations .tool-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:7px 10px!important;
+    margin-top:3px!important;
+  }
+  .quest-destinations .tool-card{padding:7px 10px!important;}
+  .quest-destinations .tool-card .where{font-size:42px!important;margin-bottom:3px!important;}
+  .quest-destinations .tool-card h2{font-size:50px!important;margin-bottom:3px!important;}
+  .quest-destinations .tool-card p{font-size:42px!important;line-height:1.04!important;}
+  .quest-destinations .demo-actions{margin-top:4px!important;}
+  .quest-destinations .demo-link{font-size:38px!important;padding:7px 11px!important;}
+  .quest-destinations .demo-note{font-size:36px!important;}
+}
+</style>
+
 </head>
 <body>
 <div class="deck">
@@ -1030,5 +1157,122 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDo
  .quest-destinations .demo-note{font-size:24px!important;line-height:1!important;margin-top:2px!important}
 }
 </style>
+
+<style id="ABSOLUTE-FINAL-SLIDE3-OVERRIDE">
+/* MUST remain at end of body: overrides accumulated legacy style blocks */
+.quest-destinations .tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px 12px!important;margin-top:6px!important}
+.quest-destinations .tool-card{padding:10px 13px!important;min-height:0!important}
+.quest-destinations .tool-card .where{font-size:44px!important;line-height:1.02!important;margin-bottom:5px!important;letter-spacing:.02em!important}
+.quest-destinations .tool-card h2{font-size:52px!important;line-height:1.02!important;margin:0 0 5px!important}
+.quest-destinations .tool-card p{font-size:44px!important;line-height:1.07!important;margin:0!important}
+.quest-destinations .demo-actions{margin-top:7px!important;gap:12px!important}
+.quest-destinations .demo-link{font-size:40px!important;line-height:1.04!important;padding:9px 14px!important}
+.quest-destinations .demo-note{font-size:38px!important;line-height:1.05!important;margin:0!important}
+@media (max-height:850px){
+ .quest-destinations .tool-grid{gap:7px 10px!important;margin-top:3px!important}
+ .quest-destinations .tool-card{padding:7px 10px!important}
+ .quest-destinations .tool-card .where{font-size:42px!important;margin-bottom:3px!important}
+ .quest-destinations .tool-card h2{font-size:50px!important;margin-bottom:3px!important}
+ .quest-destinations .tool-card p{font-size:42px!important;line-height:1.04!important}
+ .quest-destinations .demo-link{font-size:38px!important;padding:7px 11px!important}
+ .quest-destinations .demo-note{font-size:36px!important}
+}
+</style>
+
+
+<style id="slide3-balanced-final-override">
+/* Slide 3 balanced final sizing — intentionally the LAST style block in the document. */
+.quest-destinations{
+  padding-top:10px!important;
+  padding-bottom:48px!important;
+}
+.quest-destinations .topline{
+  font-size:26px!important;
+  margin-bottom:3px!important;
+}
+.quest-destinations h1{
+  margin:0 0 5px!important;
+}
+.quest-destinations .tool-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px 12px!important;
+  margin-top:6px!important;
+}
+.quest-destinations .tool-card{
+  padding:10px 13px!important;
+  min-height:0!important;
+}
+.quest-destinations .tool-card .where{
+  font-size:32px!important;
+  line-height:1.04!important;
+  margin-bottom:5px!important;
+  letter-spacing:.02em!important;
+}
+.quest-destinations .tool-card h2{
+  font-size:38px!important;
+  line-height:1.03!important;
+  margin:0 0 5px!important;
+}
+.quest-destinations .tool-card p{
+  font-size:32px!important;
+  line-height:1.08!important;
+  margin:0!important;
+}
+.quest-destinations .demo-actions{
+  margin-top:8px!important;
+  gap:12px!important;
+}
+.quest-destinations .demo-link{
+  font-size:30px!important;
+  line-height:1.05!important;
+  padding:9px 14px!important;
+}
+.quest-destinations .demo-note{
+  font-size:28px!important;
+  line-height:1.08!important;
+  margin:0!important;
+}
+.quest-destinations .bottom{
+  font-size:24px!important;
+}
+
+/* Keep it readable on shorter classroom/projector screens without overflowing. */
+@media (max-height:850px){
+  .quest-destinations{padding-top:6px!important;padding-bottom:42px!important;}
+  .quest-destinations .tool-grid{gap:7px 10px!important;margin-top:3px!important;}
+  .quest-destinations .tool-card{padding:7px 10px!important;}
+  .quest-destinations .tool-card .where{font-size:30px!important;margin-bottom:3px!important;}
+  .quest-destinations .tool-card h2{font-size:36px!important;margin-bottom:3px!important;}
+  .quest-destinations .tool-card p{font-size:30px!important;line-height:1.05!important;}
+  .quest-destinations .demo-actions{margin-top:5px!important;}
+  .quest-destinations .demo-link{font-size:28px!important;padding:7px 11px!important;}
+  .quest-destinations .demo-note{font-size:26px!important;}
+  .quest-destinations .bottom{font-size:24px!important;}
+}
+</style>
+
+
+<style id="slide11-instruction-text-final-override">
+/* Slightly enlarge the six instruction/accessibility lines on slide 11 only. */
+.slide:nth-of-type(11) .quest-ready-grid .quest-ready-list,
+.slide:nth-of-type(11) .quest-ready-grid .quest-ready-list p,
+.slide:nth-of-type(11) .quest-ready-grid .accessibility-note,
+.slide:nth-of-type(11) .quest-ready-grid .accessibility-note p,
+.slide:nth-of-type(11) .quest-ready-grid li{
+  font-size:28px!important;
+  line-height:1.16!important;
+}
+@media (max-height:850px){
+  .slide:nth-of-type(11) .quest-ready-grid .quest-ready-list,
+  .slide:nth-of-type(11) .quest-ready-grid .quest-ready-list p,
+  .slide:nth-of-type(11) .quest-ready-grid .accessibility-note,
+  .slide:nth-of-type(11) .quest-ready-grid .accessibility-note p,
+  .slide:nth-of-type(11) .quest-ready-grid li{
+    font-size:27px!important;
+    line-height:1.12!important;
+  }
+}
+</style>
+
 </body>
 </html>
