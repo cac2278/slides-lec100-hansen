@@ -66,7 +66,7 @@ p,li{font-size:clamp(19px,2vw,30px);line-height:1.32}
 .move{border:2px solid #d8cce2;border-radius:20px;padding:1.5vw}
 .move .icon{font-size:40px}
 .move h3{font-size:clamp(20px,2vw,30px);margin:.3em 0}
-.bottom{position:absolute;left:6vw;right:6vw;bottom:2.5vh;display:flex;justify-content:space-between;align-items:center;color:#756c7b;font-size:14px}
+.bottom{position:absolute;left:6vw;right:6vw;bottom:2.5vh;display:flex;justify-content:space-between;align-items:center;color:#756c7b;font-size:24px}
 .controls{position:fixed;right:16px;bottom:14px;z-index:99;display:flex;gap:8px}
 .controls button{border:0;border-radius:999px;padding:11px 15px;background:#211a2d;color:#fff;font-weight:900;cursor:pointer}
 @media print{
@@ -130,7 +130,7 @@ p,li{max-width:1100px}
 .controls button{background:#30273a;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .objectives{display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;margin-top:4vh;max-width:1050px}
 .objective{border-top:3px solid rgba(255,255,255,.72);padding-top:1.2em}
-.objective .num{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:#ddd0e9;font-weight:900}
+.objective .num{font-size:24px;letter-spacing:.15em;text-transform:uppercase;color:#ddd0e9;font-weight:900}
 .objective p{font-size:clamp(18px,1.65vw,25px);line-height:1.35;color:white;margin:.4em 0}
 .transition-title{font-family:Arial,Helvetica,sans-serif;font-weight:900;letter-spacing:.01em}
 
@@ -201,7 +201,7 @@ p,li{max-width:1100px}
 .debrief-final .sendoff-card strong{color:var(--purple)}
 .debrief-final .sendoff-card p{font-size:clamp(17px,1.55vw,24px)}
 .debrief-final .sendoff-num{
-  font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:24px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--purple2);font-weight:900
 }
 
@@ -619,9 +619,9 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 @media (max-height:760px){
   .explore-device-guide{gap:4px;margin-top:6px}
   .explore-device-guide>div{padding:5px 9px}
-  .explore-device-guide strong{font-size:14px}
-  .explore-device-guide span{font-size:13px}
-  .timer-slide .quest-launch-copy>p{font-size:17px!important}
+  .explore-device-guide strong{font-size:24px}
+  .explore-device-guide span{font-size:24px}
+  .timer-slide .quest-launch-copy>p{font-size:24px!important}
 }
 
 /* V1.20.3 — Slide 9 only: make call-number retrieval explicit and visible. */
@@ -680,6 +680,22 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 .slide9-demo .demo-note{margin:0!important;font-size:clamp(15px,1.15vw,18px)!important}
 @media(max-height:760px){.slide9-reminders{margin-top:5px}.slide:has(.slide9-reminders) .fake-result{padding:4px 7px!important}.slide:has(.slide9-reminders) .fake-filter div{padding:.28em!important;margin:.18em 0!important}}
 
+
+/* V8 — clearly enlarge the smallest text on slides 3 and 11 only. */
+.quest-destinations .where{font-size:clamp(17px,1.25vw,20px)!important;}
+.quest-destinations .tool-card p{font-size:clamp(18px,1.4vw,21px)!important;line-height:1.22!important;}
+.quest-destinations .demo-note{font-size:clamp(17px,1.25vw,20px)!important;}
+.quest-destinations .bottom{font-size:clamp(17px,1.2vw,20px)!important;}
+
+.quest-ready .quest-rule{font-size:clamp(17px,1.22vw,19px)!important;line-height:1.16!important;padding:.42em .62em!important;}
+.quest-ready .quest-qr-label{font-size:clamp(17px,1.22vw,19px)!important;}
+.quest-ready .quest-qr-url{font-size:clamp(15px,1.02vw,17px)!important;line-height:1.18!important;}
+.quest-ready .bottom{font-size:clamp(17px,1.2vw,19px)!important;}
+/* Recover the small amount of vertical space used by the larger type without shrinking it. */
+.quest-ready .quest-rules{gap:clamp(4px,.45vh,7px)!important;}
+.quest-ready .quest-launch-copy>p{margin:.28em 0!important;}
+.quest-ready .pause{margin-top:clamp(5px,.6vh,8px)!important;padding:clamp(8px,.85vh,11px) clamp(12px,1vw,16px)!important;}
+
 </style>
 
 <style>
@@ -705,9 +721,9 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 @media(max-height:760px){
  .timer-slide{padding-top:14px!important;padding-bottom:44px!important;}
  .timer-slide .quest-launch-copy h1{font-size:clamp(30px,4vw,50px)!important;}
- .timer-slide .quest-launch-copy>p{font-size:15px!important;}
- .timer-slide .explore-device-guide strong{font-size:13px!important;}
- .timer-slide .explore-device-guide span{font-size:12px!important;}
+ .timer-slide .quest-launch-copy>p{font-size:24px!important;}
+ .timer-slide .explore-device-guide strong{font-size:24px!important;}
+ .timer-slide .explore-device-guide span{font-size:24px!important;}
  .timer-slide .quest-qr{width:min(27vw,36vh)!important;height:min(27vw,36vh)!important;}
 }
 </style>
@@ -734,13 +750,13 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 @media(max-height:760px){
  .timer-slide{padding-top:12px!important;padding-bottom:42px!important;}
  .timer-slide .quest-launch-copy h1{font-size:clamp(34px,4.2vw,54px)!important;}
- .timer-slide .quest-launch-copy>p{font-size:17px!important;line-height:1.14!important;}
+ .timer-slide .quest-launch-copy>p{font-size:24px!important;line-height:1.14!important;}
  .timer-slide .explore-device-guide{gap:4px!important;margin-top:4px!important;}
  .timer-slide .explore-device-guide>div{padding:5px 9px!important;}
- .timer-slide .explore-device-guide strong{font-size:14px!important;}
- .timer-slide .explore-device-guide span{font-size:13px!important;}
+ .timer-slide .explore-device-guide strong{font-size:24px!important;}
+ .timer-slide .explore-device-guide span{font-size:24px!important;}
  .timer-slide .timer-display{font-size:36px!important;}
- .timer-slide .timer-label{font-size:13px!important;}
+ .timer-slide .timer-label{font-size:24px!important;}
  .timer-slide .quest-qr{width:min(27vw,35vh)!important;height:min(27vw,35vh)!important;}
 }
 </style>
@@ -756,7 +772,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 .quest-destinations .tool-card .where{font-size:clamp(12px,.9vw,15px)}
 .quest-destinations .demo-actions{margin-top:clamp(6px,.8vh,10px)}
 @media(max-width:850px){.quest-destinations .tool-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-height:720px){.quest-destinations .tool-card p{font-size:14px}.quest-destinations .tool-card h2{font-size:18px}}
+@media(max-height:720px){.quest-destinations .tool-card p{font-size:24px}.quest-destinations .tool-card h2{font-size:24px}}
 .tool-card{border:1px solid #ddd1e7;border-radius:14px;padding:1.15vw 1.3vw;background:#fff}
 .tool-card h2{font-size:clamp(21px,2.1vw,31px);margin:.05em 0 .25em;color:var(--purple)}
 .tool-card p{font-size:clamp(16px,1.45vw,22px);margin:.25em 0;line-height:1.25}
@@ -785,7 +801,61 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 .quest-ready .quest-qr-url{font-size:clamp(11px,.8vw,14px);overflow-wrap:anywhere}
 .quest-ready .pause{margin-top:.55em;padding:.65em .8em}
 
-@media(max-height:720px){.tool-card p,.help-card p,.help-card li{font-size:16px}.tool-grid{gap:.7vw}.quest-ready .quest-qr{width:32vh!important;height:32vh!important}}
+@media(max-height:720px){.tool-card p,.help-card p,.help-card li{font-size:24px}.tool-grid{gap:.7vw}.quest-ready .quest-qr{width:32vh!important;height:32vh!important}}
+</style>
+
+<style>
+/* V7: increase only the smallest text on slides 3 and 11. */
+.quest-destinations .tool-card .where{font-size:clamp(14px,1vw,16px)}
+.quest-destinations .demo-note{font-size:clamp(14px,1vw,16px)}
+.quest-ready .quest-rule{font-size:clamp(14px,1.12vw,17px)}
+.quest-ready .quest-qr-url{font-size:clamp(13px,.9vw,15px)}
+.quest-ready .quest-qr-label{font-size:clamp(14px,1vw,16px)}
+@media(max-height:720px){
+ .quest-destinations .tool-card .where,.quest-destinations .demo-note{font-size:24px}
+ .quest-ready .quest-rule{font-size:24px}
+ .quest-ready .quest-qr-url{font-size:24px}
+ .quest-ready .quest-qr-label{font-size:24px}
+}
+</style>
+
+<style id="v10-small-text-boost">
+/* V10: one more small, targeted legibility boost — slides 3 and 11 only */
+.quest-destinations .tool-card .where{font-size:clamp(19px,1.38vw,22px)!important;}
+.quest-destinations .demo-note{font-size:clamp(19px,1.38vw,22px)!important;}
+.quest-destinations .bottom{font-size:clamp(19px,1.34vw,22px)!important;}
+.quest-ready .quest-rule{font-size:clamp(19px,1.34vw,21px)!important;line-height:1.12!important;}
+.quest-ready .quest-qr-label{font-size:clamp(19px,1.34vw,21px)!important;}
+.quest-ready .quest-qr-url{font-size:clamp(17px,1.14vw,19px)!important;line-height:1.12!important;}
+.quest-ready .bottom{font-size:clamp(19px,1.31vw,21px)!important;}
+@media(max-height:720px){
+ .quest-destinations .tool-card .where,.quest-destinations .demo-note{font-size:24px!important;}
+ .quest-destinations .bottom{font-size:24px!important;}
+ .quest-ready .quest-rule{font-size:24px!important;}
+ .quest-ready .quest-qr-label{font-size:24px!important;}
+ .quest-ready .quest-qr-url{font-size:24px!important;}
+ .quest-ready .bottom{font-size:24px!important;}
+}
+</style>
+
+<style>
+/* V11: Slide 3 readability only. Deliberately overrides earlier short-screen reductions. */
+.quest-destinations .tool-grid{gap:clamp(6px,.62vw,10px)!important;margin-top:clamp(5px,.65vh,9px)!important}
+.quest-destinations .tool-card{padding:clamp(7px,.72vh,10px) clamp(9px,.72vw,12px)!important}
+.quest-destinations .tool-card h2{font-size:clamp(21px,1.78vw,28px)!important;line-height:1.06!important;margin:.02em 0 .12em!important}
+.quest-destinations .tool-card p{font-size:clamp(18px,1.32vw,21px)!important;line-height:1.13!important;margin:.08em 0!important}
+.quest-destinations .tool-card .where{font-size:clamp(15px,1.02vw,17px)!important;line-height:1.05!important}
+.quest-destinations .demo-actions{margin-top:clamp(4px,.5vh,7px)!important}
+.quest-destinations .demo-note{font-size:clamp(16px,1.05vw,18px)!important}
+@media(max-height:720px){
+ .quest-destinations{padding-top:14px!important;padding-bottom:42px!important}
+ .quest-destinations .tool-grid{gap:5px!important;margin-top:4px!important}
+ .quest-destinations .tool-card{padding:6px 8px!important}
+ .quest-destinations .tool-card h2{font-size:24px!important}
+ .quest-destinations .tool-card p{font-size:24px!important;line-height:1.08!important}
+ .quest-destinations .tool-card .where{font-size:24px!important}
+ .quest-destinations .demo-note{font-size:24px!important}
+}
 </style>
 </head>
 <body>
@@ -799,7 +869,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
     <div class="objective"><div class="num">Today · 02</div><p>Practice finding the <strong>essential research resources</strong> you'll use throughout your college career.</p></div>
   </div>
   <div class="bigemoji">🐙</div>
-  <div class="bottom" style="color:#e9dcf5"><span>UW–Whitewater at Rock County</span><span>1 / 13</span></div>
+  <div class="bottom" style="color:#e9dcf5"><span>UW–Whitewater at Rock County</span><span>1 / 11</span></div>
 </section>
 
 <section class="slide hero orientation-slide">
@@ -813,7 +883,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
     <div class="service-card"><span class="service-icon">🔎</span><strong>Research Help</strong></div>
   </div>
   <div class="go-find">Your Quest will send you out to discover what Lenox can do for you.</div>
-  <div class="bottom" style="color:#e9dcf5"><span>The Great Lenox Library Octopus Hunt</span><span>2 / 13</span></div>
+  <div class="bottom" style="color:#e9dcf5"><span>The Great Lenox Library Octopus Hunt</span><span>2 / 11</span></div>
 </section>
 
 <section class="slide quest-destinations">
@@ -828,32 +898,9 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
     <div class="tool-card"><div class="where">Physical library</div><h2>🚶 Around Lenox</h2><p>Explore the building and discover what you can borrow.</p></div>
   </div>
   <div class="demo-actions"><a class="demo-link" href="https://www.uww.edu/library" target="_blank" rel="noopener">↗ OPEN THE LIBRARY WEBSITE</a><p class="demo-note"><strong>www.uww.edu/library</strong> · Live demo · opens in a new tab.</p></div>
-  <div class="bottom"><span>You'll use all six during the Quest</span><span>3 / 13</span></div>
+  <div class="bottom"><span>You'll use all six during the Quest</span><span>3 / 11</span></div>
 </section>
 
-<section class="slide">
-  <div class="topline">Help + Guides</div>
-  <h1>Know where to go when you need a next step.</h1>
-  <div class="grid2">
-    <div class="card soft"><h2>💬 Ask a Librarian</h2><p>Find the green <strong>Ask a Librarian</strong> option on the Library website.</p><p>Look at the chat form: it asks for information so a librarian can respond to your question.</p><div class="pause"><b>Quest move:</b> You'll look at that form and record what it asks you to enter.</div></div>
-    <div class="card"><h2>🗺️ Research Guides</h2><p>Open <strong>Research, Citation, &amp; Class Guides</strong>.</p><p>Choose a subject or class guide. Then look for a resource that could help with research in that area.</p><div class="pause"><b>Quest move:</b> You'll record the guide you chose and one useful resource.</div></div>
-  </div>
-  <div class="bottom"><span>Knowing where to look is a research skill</span><span>4 / 13</span></div>
-</section>
-
-<section class="slide">
-  <div class="topline">Meet a Database</div>
-  <h1>Databases are different research collections.</h1>
-  <div class="database-demo">
-    <div class="card soft"><h2>Start with Databases A–Z.</h2><p>You do <strong>not</strong> need to memorize database names.</p><p>Choose one you haven't used before, then read its description.</p><div class="pause"><b>Ask:</b> What kind of information could I use this database to find?</div></div>
-    <div class="database-list" aria-label="Example database descriptions">
-      <div class="database-entry"><strong>Database name</strong><br><span class="small">Description tells you the subjects, source types, or information inside.</span></div>
-      <div class="database-entry"><strong>Another database</strong><br><span class="small">The description helps you decide whether it fits your research need.</span></div>
-      <div class="database-entry"><strong>Your Quest</strong><br><span class="small">Record the database name + what you could use it to find.</span></div>
-    </div>
-  </div>
-  <div class="bottom"><span>Database descriptions are clues</span><span>5 / 13</span></div>
-</section>
 
 <section class="slide hero">
   <div class="topline">Research Mini-Lesson</div>
@@ -861,7 +908,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
   <p>We'll practice with elephants. Then you'll transfer the same moves to octopuses.</p>
   <div class="demo-actions"><a class="demo-link" href="https://scholar.google.com/" target="_blank" rel="noopener">↗ OPEN GOOGLE SCHOLAR</a><p class="demo-note" style="color:#e9dcf5"><strong>scholar.google.com</strong> · Opens in a new tab.</p></div>
   <div class="bigemoji">🐘</div>
-  <div class="bottom" style="color:#e9dcf5"><span>Research lesson begins</span><span>6 / 13</span></div>
+  <div class="bottom" style="color:#e9dcf5"><span>Research lesson begins</span><span>4 / 11</span></div>
 </section>
 
 <section class="slide">
@@ -871,7 +918,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
   <div class="card soft"><p><span class="strike">How does</span> <span class="keep">habitat loss</span> <span class="strike">affect</span> <span class="keep">African elephants</span>?</p></div>
   <div class="keyword-row"><span class="keyword">African elephants</span><span class="keyword">habitat loss</span></div>
   <div class="pause"><b>Keywords = WHAT ABOUT?</b> Pull out the ideas a source would actually discuss.</div>
-  <div class="bottom"><span>Model the same move students use on Communication</span><span>7 / 13</span></div>
+  <div class="bottom"><span>Model the same move students use on Communication</span><span>5 / 11</span></div>
 </section>
 
 <section class="slide">
@@ -881,7 +928,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
   <div class="syn"><div>habitat loss</div><div class="arrow">→</div><div>habitat destruction</div><div class="arrow">→</div><div>habitat fragmentation</div></div>
   <div class="syn" style="margin-top:1.4vh"><div>elephant</div><div class="arrow">→</div><div>African elephant</div><div class="arrow">→</div><div>Loxodonta</div></div>
   <div class="pause"><b>First search not perfect?</b> Don't start over. Try a different word for one of your main ideas.</div>
-  <div class="bottom"><span>SEARCH → LOOK → ADJUST</span><span>8 / 13</span></div>
+  <div class="bottom"><span>SEARCH → LOOK → ADJUST</span><span>6 / 11</span></div>
 </section>
 
 <section class="slide">
@@ -890,7 +937,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
   <div class="andviz"><div class="concept">elephant</div><div class="and">AND</div><div class="concept">habitat loss</div></div>
   <div class="searchbox">elephant AND habitat loss</div>
   <div class="pause"><b>AND</b> tells the search to find sources that include <b>both ideas</b>.</div>
-  <div class="bottom"><span>Use AND in all capital letters</span><span>9 / 13</span></div>
+  <div class="bottom"><span>Use AND in all capital letters</span><span>7 / 11</span></div>
 </section>
 
 <section class="slide">
@@ -902,7 +949,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
   </div>
   <div class="slide9-reminders"><div class="slide9-rule"><b>Keywords = WHAT ABOUT?</b><span>Resource Type = WHAT KIND?</span></div><div class="callnumber-teach" aria-label="How to find a book call number"><div class="callnumber-label">📍 FIND THE CALL NUMBER</div><div class="callnumber-steps"><b>Books</b> → open the record → <b>Availability / Location</b></div><div class="callnumber-example"><strong>CALL NUMBER: QL737.P98 ...</strong> <span>Write it on your Quest Card.</span></div></div></div>
   <div class="demo-actions slide9-demo"><a class="demo-link" href="https://www.uww.edu/library" target="_blank" rel="noopener">↗ OPEN RESEARCH@UWW FOR LIVE DEMO</a><p class="demo-note"><strong>www.uww.edu/library</strong> · Opens in a new tab · close the tab to return here.</p></div>
-  <div class="bottom"><span>Article mission + book mission use this move</span><span>10 / 13</span></div>
+  <div class="bottom"><span>Article mission + book mission use this move</span><span>8 / 11</span></div>
 </section>
 
 <section class="slide scholar-slide">
@@ -912,7 +959,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
     <div class="result-card"><div class="small">Google Scholar result</div><div class="result-title">Habitat fragmentation and African elephant behavior</div><p class="small">Authors · Journal · Year</p><span class="related">Related articles</span></div>
     <div class="card soft"><h2>What do you do?</h2><p>1. Find a useful Scholar result.</p><p>2. Look underneath it.</p><p>3. Open <b>Related articles</b>.</p><p class="check">✓ Follow the trail instead of starting over.</p><div class="demo-actions"><a class="demo-link" href="https://scholar.google.com/" target="_blank" rel="noopener">↗ OPEN GOOGLE SCHOLAR</a><p class="demo-note"><strong>scholar.google.com</strong> · Live demo · opens in a new tab.</p></div></div>
   </div>
-  <div class="bottom"><span>Same move you'll use in the octopus Quest</span><span>11 / 13</span></div>
+  <div class="bottom"><span>Same move you'll use in the octopus Quest</span><span>9 / 11</span></div>
 </section>
 
 <section class="slide">
@@ -922,7 +969,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
     <div class="help-card"><h2>👤 Camille Charette</h2><p><strong>Rock Campus &amp; Archives Librarian</strong></p><p>Ask for help getting started, choosing search terms, finding sources, evaluating information, citations, or getting unstuck.</p><div class="pause"><b>During the Quest:</b> You can ask Camille or a library student assistant. That's a research skill—not a shortcut.</div></div>
     <div class="help-card soft"><h2>📅 Schedule research help</h2><p>Use <strong>Navigate</strong> to schedule an individual research appointment with Camille.</p><p>You'll encounter this again in the final Quest mission.</p><div class="demo-actions"><a class="demo-link" href="https://uww.navigate.eab.com/app/#/authentication/remote/" target="_blank" rel="noopener">↗ OPEN NAVIGATE</a><p class="demo-note"><strong>uww.navigate.eab.com</strong> · Opens in a new tab.</p></div></div>
   </div>
-  <div class="bottom"><span>You do not have to figure it out alone</span><span>12 / 13</span></div>
+  <div class="bottom"><span>You do not have to figure it out alone</span><span>10 / 11</span></div>
 </section>
 
 <section class="slide hero quest-ready">
@@ -948,7 +995,7 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
       <div class="quest-qr-url">https://cac2278.github.io/app-quest-lec100-hansen/</div>
     </div>
   </div>
-  <div class="bottom" style="color:#e9dcf5"><span>No timer · No penalties · Asking for help is allowed</span><span>13 / 13</span></div>
+  <div class="bottom" style="color:#e9dcf5"><span>No timer · No penalties · Asking for help is allowed</span><span>11 / 11</span></div>
 </section>
 
 </div>
@@ -960,5 +1007,28 @@ document.getElementById('prev').addEventListener('click',()=>show(i-1));
 document.getElementById('next').addEventListener('click',()=>show(i+1));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);});
 </script>
+
+<style>
+/* V12: Slide 3 only — materially larger classroom-readable small text. */
+.quest-destinations .tool-grid{gap:clamp(5px,.55vw,9px)!important;margin-top:clamp(4px,.55vh,8px)!important}
+.quest-destinations .tool-card{padding:clamp(6px,.62vh,9px) clamp(8px,.65vw,11px)!important}
+.quest-destinations .tool-card h2{font-size:clamp(23px,1.9vw,30px)!important;line-height:1.02!important;margin:.01em 0 .08em!important}
+.quest-destinations .tool-card p{font-size:clamp(21px,1.5vw,24px)!important;line-height:1.08!important;margin:.04em 0!important}
+.quest-destinations .tool-card .where{font-size:clamp(18px,1.2vw,20px)!important;line-height:1.02!important;margin-bottom:1px!important}
+.quest-destinations .demo-actions{margin-top:clamp(3px,.4vh,6px)!important}
+.quest-destinations .demo-note{font-size:clamp(18px,1.2vw,20px)!important;line-height:1.05!important;margin-top:3px!important}
+@media(max-height:720px){
+ .quest-destinations{padding-top:10px!important;padding-bottom:38px!important}
+ .quest-destinations .topline{margin-bottom:2px!important}
+ .quest-destinations h1{margin:.03em 0 .08em!important}
+ .quest-destinations .tool-grid{gap:4px!important;margin-top:2px!important}
+ .quest-destinations .tool-card{padding:4px 7px!important}
+ .quest-destinations .tool-card h2{font-size:24px!important;line-height:1!important;margin:0 0 2px!important}
+ .quest-destinations .tool-card p{font-size:24px!important;line-height:1.04!important;margin:0!important}
+ .quest-destinations .tool-card .where{font-size:24px!important;line-height:1!important}
+ .quest-destinations .demo-actions{margin-top:3px!important}
+ .quest-destinations .demo-note{font-size:24px!important;line-height:1!important;margin-top:2px!important}
+}
+</style>
 </body>
 </html>
