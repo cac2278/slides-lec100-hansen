@@ -773,7 +773,18 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
 .quest-ready .quest-qr{width:min(29vw,40vh)!important;height:min(29vw,40vh)!important}
 .quest-ready .quest-launch{grid-template-columns:minmax(0,1fr) minmax(280px,32vw);gap:2.5vw}
 .quest-ready .quest-launch-copy p{font-size:clamp(16px,1.4vw,22px);line-height:1.25}
-.quest-ready{padding-bottom:9vh}
+/* Slide 13 fit correction only: preserve content while keeping footer visible. */
+.quest-ready{padding-bottom:7vh}
+.quest-ready h1{font-size:clamp(38px,4.2vw,66px);margin:.08em 0 .18em}
+.quest-ready .quest-launch{align-items:start;gap:2vw}
+.quest-ready .quest-launch-copy>p{margin:.35em 0}
+.quest-ready .quest-rules{grid-template-columns:repeat(3,1fr);gap:.55vw;margin:.7vh 0}
+.quest-ready .quest-rule{padding:.52em .7em;font-size:clamp(13px,1.08vw,17px);line-height:1.16}
+.quest-ready .quest-qr{width:min(25vw,33vh)!important;height:min(25vw,33vh)!important}
+.quest-ready .quest-qr-label{margin-top:.45em}
+.quest-ready .quest-qr-url{font-size:clamp(11px,.8vw,14px);overflow-wrap:anywhere}
+.quest-ready .pause{margin-top:.55em;padding:.65em .8em}
+
 @media(max-height:720px){.tool-card p,.help-card p,.help-card li{font-size:16px}.tool-grid{gap:.7vw}.quest-ready .quest-qr{width:32vh!important;height:32vh!important}}
 </style>
 </head>
@@ -925,14 +936,16 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
         <div class="quest-rule">📝 Record every answer on your Quest Card.</div>
         <div class="quest-rule">🖥️ Use a library computer when a mission sends you there.</div>
         <div class="quest-rule">💬 Ask for help whenever you need it.</div>
+        <div class="quest-rule">🔊 <strong>Read Aloud:</strong> Hear the app instructions if you prefer to process information auditorily.</div>
+        <div class="quest-rule">🌿 <strong>Sensory-friendly:</strong> Switch to a less stimulating visual experience.</div>
       </div>
       <p><strong>For every discovery:</strong> Find it → write it on your Quest Card → tap “I WROTE IT DOWN.”</p>
       <div class="pause" style="color:#211a2d"><b>When you're finished:</b> Bring your completed Quest Card back and show Camille your finished app screen.</div>
     </div>
     <div class="quest-qr-wrap">
-      <img class="quest-qr" src="https://quickchart.io/qr?text=https%3A%2F%2Fcac2278.github.io%2Fapp-find-the-octopus%2F&size=700&margin=2&ecLevel=H" alt="QR code to open the Lenox Library Quest">
+      <img class="quest-qr" src="https://quickchart.io/qr?text=https%3A%2F%2Fcac2278.github.io%2Fapp-quest-lec100-hansen%2F&size=700&margin=2&ecLevel=H" alt="QR code to open the Lenox Library Quest">
       <div class="quest-qr-label">SCAN TO START THE QUEST</div>
-      <div class="quest-qr-url">https://cac2278.github.io/app-find-the-octopus/</div>
+      <div class="quest-qr-url">https://cac2278.github.io/app-quest-lec100-hansen/</div>
     </div>
   </div>
   <div class="bottom" style="color:#e9dcf5"><span>No timer · No penalties · Asking for help is allowed</span><span>13 / 13</span></div>
