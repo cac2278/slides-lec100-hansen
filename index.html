@@ -1120,9 +1120,17 @@ p,li{font-size:clamp(23px,2.25vw,34px);line-height:1.28}
       <img class="quest-qr" src="https://quickchart.io/qr?text=https%3A%2F%2Fcac2278.github.io%2Fapp-quest-lec100-hansen%2F&size=700&margin=2&ecLevel=H" alt="QR code to open the Lenox Library Quest">
       <div class="quest-qr-label">SCAN TO START THE QUEST</div>
       <div class="quest-qr-url">https://cac2278.github.io/app-quest-lec100-hansen/</div>
+      <div class="quest-timer" aria-label="15 minute Quest timer">
+        <div class="quest-timer-label">15-MINUTE QUEST TIMER</div>
+        <div class="quest-timer-time" id="questTimer" aria-live="polite">15:00</div>
+        <div class="quest-timer-actions">
+          <button type="button" id="questTimerStart">START</button>
+          <button type="button" id="questTimerReset">RESET</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="bottom" style="color:#e9dcf5"><span>No timer · No penalties · Asking for help is allowed</span><span>11 / 11</span></div>
+  <div class="bottom" style="color:#e9dcf5"><span>15-minute Quest · No penalties · Asking for help is allowed</span><span>11 / 11</span></div>
 </section>
 
 </div>
@@ -1273,6 +1281,86 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDo
   }
 }
 </style>
+
+
+<style id="slide11-quest-timer-final-override">
+.slide:nth-of-type(11) .quest-timer{
+  margin-top:10px;
+  padding:9px 12px 10px;
+  border:2px solid rgba(255,255,255,.72);
+  border-radius:14px;
+  background:rgba(24,14,36,.72);
+  text-align:center;
+  color:#fff;
+}
+.slide:nth-of-type(11) .quest-timer-label{
+  font-family:Arial,sans-serif;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.slide:nth-of-type(11) .quest-timer-time{
+  font-family:Arial,sans-serif;
+  font-size:44px;
+  line-height:1;
+  font-weight:900;
+  font-variant-numeric:tabular-nums;
+  margin:3px 0 6px;
+}
+.slide:nth-of-type(11) .quest-timer-actions{display:flex;justify-content:center;gap:8px}
+.slide:nth-of-type(11) .quest-timer-actions button{
+  border:0;
+  border-radius:999px;
+  padding:7px 13px;
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  background:#fff;
+  color:#3d175d;
+}
+.slide:nth-of-type(11) .quest-timer-actions button:focus-visible{outline:3px solid #ffd86b;outline-offset:2px}
+.slide:nth-of-type(11) .quest-timer.finished .quest-timer-time{font-size:40px}
+@media(max-height:850px){
+  .slide:nth-of-type(11) .quest-timer{margin-top:7px;padding:6px 10px 7px}
+  .slide:nth-of-type(11) .quest-timer-time{font-size:36px;margin:2px 0 4px}
+  .slide:nth-of-type(11) .quest-timer-label{font-size:13px}
+  .slide:nth-of-type(11) .quest-timer-actions button{padding:5px 11px;font-size:13px}
+}
+</style>
+<script id="slide11-quest-timer-script">
+(()=>{
+  const display=document.getElementById('questTimer');
+  const start=document.getElementById('questTimerStart');
+  const reset=document.getElementById('questTimerReset');
+  if(!display||!start||!reset) return;
+  const total=15*60;
+  let remaining=total, interval=null, running=false;
+  const draw=()=>{
+    const m=Math.floor(remaining/60), sec=remaining%60;
+    display.textContent=String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+  };
+  const stop=()=>{if(interval){clearInterval(interval);interval=null;}running=false;};
+  const tick=()=>{
+    if(remaining>0){remaining--;draw();}
+    if(remaining<=0){
+      stop();
+      start.textContent='START';
+      display.textContent='TIME!';
+      display.closest('.quest-timer')?.classList.add('finished');
+    }
+  };
+  start.addEventListener('click',()=>{
+    if(remaining<=0){remaining=total;draw();display.closest('.quest-timer')?.classList.remove('finished');}
+    if(running){stop();start.textContent='RESUME';return;}
+    running=true;start.textContent='PAUSE';interval=setInterval(tick,1000);
+  });
+  reset.addEventListener('click',()=>{
+    stop();remaining=total;draw();start.textContent='START';display.closest('.quest-timer')?.classList.remove('finished');
+  });
+  draw();
+})();
+</script>
 
 </body>
 </html>
